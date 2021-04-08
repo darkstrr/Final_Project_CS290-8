@@ -8,3 +8,10 @@
 ## Industry Mentor: Anita Anderson (Facebook)
 
 ## Music Game web app.
+
+
+## Requirements
+    1. npm install
+    2. pip install -r requirements.txt
+## Setup
+    Run echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local in the project directory
