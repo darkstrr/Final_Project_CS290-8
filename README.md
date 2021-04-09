@@ -18,6 +18,7 @@
     5. npm install socket.io-client --save
     6. pip install psycopg2-binary
     7. pip install Flask-SQLAlchemy==2.1
+    8. npm i react-google-login
 ## Setup
     Run echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local in the project directory
 ## Clone the Repo:
