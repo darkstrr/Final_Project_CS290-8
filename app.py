@@ -18,7 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-from models import Person
+
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app,
@@ -46,7 +46,7 @@ def on_disconnect():
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":
     # Note that we don't call app.run anymore. We call socketio.run with app arg
-  
+    from models import Person
     socketio.run(
         app,
         host=os.getenv('IP', '0.0.0.0'),
