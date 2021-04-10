@@ -1,5 +1,5 @@
 '''
-Flask is working in the backend and communicate with server-client using socket.io library.
+Flask server is working in the backend and communicate with server-client using socket.io library.
 '''
 # pylint: disable=invalid-name
 import os
