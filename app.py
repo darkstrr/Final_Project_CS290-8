@@ -3,7 +3,7 @@ Flask is working in the backend and communicate with server-client using socket.
 '''
 # pylint: disable=invalid-name
 import os
-from flask import Flask, send_from_directory, json
+from flask import Flask, send_from_directory, json, request
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -11,6 +11,9 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv()) # This is to load your API keys from .env
+
+#Dictionary of users in the format: socketid[username,roomname]
+users = {}
 
 
 #Flask app name
@@ -46,7 +49,12 @@ def on_connect():
 @socketio.on('disconnect')
 def on_disconnect():
     """function print message into console when disconnected is ON"""
-    print('User disconnected!')
+    print('User disconnected!' + request.sid)
+    
+@socketio.on('login')
+def on_login(data):
+    users[str(request.sid)] = [data['userName'],data['userRoom']]
+    print(users)
     
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":

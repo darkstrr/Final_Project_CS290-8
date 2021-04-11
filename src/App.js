@@ -4,6 +4,8 @@ import React, { useState , useRef, useEffect} from 'react';
 
 //Main function gets passed socket
 function App(props) {
+  //Socket passed into program
+  const { socket } = props;
   //Username State
   const [name, setName] = useState('');
   //Room Name State
@@ -13,11 +15,15 @@ function App(props) {
   
   
   function Login(){
+    //Set user as logged in
     setLogin(true);
+    //Emit login event with username and userroom
+    socket.emit('login', {userName: name, userRoom: room});
   }
   
   //Function that determines what to render
   function render(){
+    //Display if user is logged in
     if(login){
       return(
       <div>
@@ -28,6 +34,7 @@ function App(props) {
       </div>
       );
     }
+    //Display if user is not logged in.
     return (
       
       <div>
