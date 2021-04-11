@@ -4,9 +4,10 @@ Flask is working in the backend and communicate with server-client using socket.
 # pylint: disable=invalid-name
 import os
 from flask import Flask, send_from_directory, json, request
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, join_room, leave_room
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -14,6 +15,15 @@ load_dotenv(find_dotenv()) # This is to load your API keys from .env
 
 #Dictionary of users in the format: socketid[username,roomname]
 users = {}
+
+#Function to get users in room, very inefficent, have to find a better way but this will work for now.
+def get_users(room):
+    returnList = []
+    for x in users.values():
+        if x[1] == room:
+            returnList.append(x[0])
+            
+    return returnList
 
 
 #Flask app name
@@ -53,8 +63,10 @@ def on_disconnect():
     
 @socketio.on('login')
 def on_login(data):
+    """function that handles logging in user to room"""
     users[str(request.sid)] = [data['userName'],data['userRoom']]
-    print(users)
+    join_room(data['userRoom'])
+    socketio.emit('users',get_users(data['userRoom']), to=data['userRoom'])
     
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":

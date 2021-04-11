@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { useState , useRef, useEffect} from 'react';
+import ListItem from './ListItem';
 
 //Main function gets passed socket
 function App(props) {
@@ -12,6 +13,8 @@ function App(props) {
   const [room, setRoom] = useState('');
   //Client login state
   const [login, setLogin] = useState(false);
+  //User list
+  const[users, setUsers] = useState([])
   
   
   function Login(){
@@ -20,6 +23,31 @@ function App(props) {
     //Emit login event with username and userroom
     socket.emit('login', {userName: name, userRoom: room});
   }
+  
+  function UserDisplay(){
+    if (login){
+      return (
+        <div>
+          <b>Connected Users</b>
+          <ul>
+            {users.map((item, index) => (
+              <ListItem key={index} name={item} />
+            ))}
+          </ul>
+        </div>        
+        )
+    }
+  }
+  
+  
+  //Socket listeners
+  useEffect(() => {
+    
+    socket.on('users', (data) => {
+      setUsers(data);
+    });
+    
+  }, []);
   
   //Function that determines what to render
   function render(){
@@ -52,6 +80,7 @@ function App(props) {
   return(
     <div>
       {render()}
+      {UserDisplay()}
     </div>
     )
 
