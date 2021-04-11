@@ -16,7 +16,7 @@ function App(props) {
   //User list
   const[users, setUsers] = useState([])
   
-  
+  //Function when user clicks 'login'
   function Login(){
     //Set user as logged in
     setLogin(true);
@@ -24,8 +24,11 @@ function App(props) {
     socket.emit('login', {userName: name, userRoom: room});
   }
   
+  //Function to display the current users
   function UserDisplay(){
+    //Make sure the user is logged in first
     if (login){
+      //Calls listitem to create a list from an array, code provided by prof.
       return (
         <div>
           <b>Connected Users</b>
@@ -39,10 +42,21 @@ function App(props) {
     }
   }
   
+  //If the user clicks "logout"
+  function Leave(condition = true){
+    //Set all values to deafult
+    setLogin(false);
+    setName('');
+    setRoom('');
+    setUsers('');
+    //Emit logout to the server
+    socket.emit('logout')
+  }
+  
   
   //Socket listeners
   useEffect(() => {
-    
+    //Send the userlist to everyone
     socket.on('users', (data) => {
       setUsers(data);
     });
@@ -53,11 +67,15 @@ function App(props) {
   function render(){
     //Display if user is logged in
     if(login){
+      //Display room if the user is logged in
       return(
       <div>
         <p>
           Username: {name}<br/>
-          Room Name: {room}
+          Room Name: {room}<br/>
+          <button type="button" onClick={() => Leave(false)}>
+          Logout
+          </button>
         </p>
       </div>
       );
