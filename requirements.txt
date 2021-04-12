@@ -1,5 +1,4 @@
 Flask
-React
 Flask-SocketIO
 Flask-Cors
 Flask-SQLAlchemy
