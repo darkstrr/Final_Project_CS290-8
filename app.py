@@ -27,7 +27,7 @@ db = SQLAlchemy(app)
 
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-socketio = SocketIO(app,
+socketio = SocketIO(app,git 
                     cors_allowed_origins="*",
                     json=json,
                     manage_session=False)
