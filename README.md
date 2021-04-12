@@ -36,3 +36,4 @@
     Create a new remote DB on your Heroku app: heroku addons:create heroku-postgresql:hobby-dev
     Push to Heroku: git push heroku master
 ## Heroku app link:
+       https://music-guessing-quiz.herokuapp.com/
