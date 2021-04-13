@@ -8,6 +8,7 @@ function Game(props) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+	const [gameState, setGameState] = useState(false)
     
     function RestartGame(){
         socket.emit('start')
@@ -76,7 +77,9 @@ function Game(props) {
 		}
 	};
 	
-	
+	function Questions(){
+		
+	}
     
     return (
     <div className="App">
