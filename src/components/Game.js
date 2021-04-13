@@ -75,6 +75,8 @@ function Game(props) {
 			setShowScore(true);
 		}
 	};
+	
+	
     
     return (
     <div className="App">
