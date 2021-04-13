@@ -50,10 +50,11 @@ def on_disconnect():
     """function print message into console when disconnected is ON"""
     print('User disconnected!')
 
-@socketio.on('login')
+@socketio.on('start')
 def on_start():
-    """function starts the game when user is logged in"""
-    MusicFetch()
+    """function starts when the start game button is pressed"""
+    tracks = MusicFetch()
+    socketio.emit('tracks', tracks, broadcast=True)
     
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":

@@ -9,13 +9,22 @@ function Game(props) {
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 	const [gameState, setGameState] = useState(false)
+	const [tracks, setTracks] = useState([])
+	const [questions, setQuestions] = useState([])
     
-    function RestartGame(){
+    function RestartGame(condition = true){
         socket.emit('start')
     }
     
-    
-     const questions = [
+    useEffect(() => {
+    	
+    socket.on('tracks', (data) => {
+      setQuestions(data)
+      setGameState(true)
+    });
+    	
+    }, []);
+/*     const questions = [
     {
 			questionText: 'Who is your Professor for CS490?',
 			answerOptions: [
@@ -62,7 +71,7 @@ function Game(props) {
 			],
 		},
 		
-	];
+	]; */
 
     	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
@@ -77,39 +86,50 @@ function Game(props) {
 		}
 	};
 	
-	function Questions(){
-		
+	function Display(){
+		if (gameState)
+			return(
+									          <div className= "quiz">
+	              {showScore ? (
+	      				<div className='score-section'>
+	      					You scored {score} out of {questions.length}
+	      				</div>
+	    			    ) :
+	    			  (
+	  				<>
+	  					<div className='question-section'>
+	    						<div className='question-count'>
+	    							<span>Question {currentQuestion + 1}/{questions.length} </span>
+	    						</div>
+	    						<div className='question-text'>
+	    						<audio controls>
+	    							<source src={questions[currentQuestion].questionText} type="audio/mpeg"/>
+	    						</audio>
+	    						</div>
+	  					</div>
+	  					
+	  					<div className='answer-section'>
+	    						{questions[currentQuestion].answerOptions.map((answerOption) => (
+	    							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+	    						))}
+	  					</div>
+	  				</>
+  			)}
+        </div>
+				)
+
 	}
     
     return (
-    <div className="App">
+    <div className="Game">
       
-          <br />
+           <br />
+           <button type="button" onClick={() => RestartGame(true)}>
+           (Re)Start Game
+           </button>
+           {Display()}
           
-          
-          <div className= "quiz">
-              {showScore ? (
-      				<div className='score-section'>
-      					You scored {score} out of {questions.length}
-      				</div>
-    			    ) :
-    			  (
-  				<>
-  					<div className='question-section'>
-    						<div className='question-count'>
-    							<span>Question {currentQuestion + 1}/{questions.length} </span>
-    						</div>
-    						<div className='question-text'>{questions[currentQuestion].questionText}</div>
-  					</div>
-  					
-  					<div className='answer-section'>
-    						{questions[currentQuestion].answerOptions.map((answerOption) => (
-    							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-    						))}
-  					</div>
-  				</>
-  			)}
-        </div>
+
           <br/>
           <br/>
           
@@ -121,3 +141,5 @@ function Game(props) {
 }
 
 export default Game;
+
+
