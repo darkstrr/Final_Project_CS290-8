@@ -5,7 +5,7 @@ import '../style.css'
 
 
 //google cilent Id 
-const clientId ='376623928596-8bna7aqfer6au922c15rqdba0hnnkngu.apps.googleusercontent.com';
+const clientId ='808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com';
 
 function Login(props) {
   
