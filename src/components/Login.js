@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import Game from './Game'
+import '../style.css'
 
 
 //google cilent Id 

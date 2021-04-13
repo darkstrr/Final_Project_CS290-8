@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Logout from './Logout';
 
 function Game(props) {
       
@@ -107,11 +108,7 @@ function Game(props) {
           <br/>
           <br/>
           
-          <div className="footer">
-            <p>
-               Developed by Akshay Patel, Albert Wang, Marco Paparatto, Shayed Ahmed
-            </p>
-          </div>
+      <Logout />
      
     </div>
     
