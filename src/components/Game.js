@@ -1,14 +1,20 @@
-import React, { useState , useRef, useEffect} from 'react';
-import './App.css';
-import './style.css';
-import io from 'socket.io-client';
-import Login from './components/Login';
-import Logout from './components/Logout';
+import React, { useState, useRef, useEffect } from 'react';
+import Logout from './Logout';
 
-const socket = io(); // Connects to socket connection
-
-function App() {
-  const questions = [
+function Game(props) {
+      
+    const { socket } = props;
+    
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [showScore, setShowScore] = useState(false);
+	const [score, setScore] = useState(0);
+    
+    function RestartGame(){
+        socket.emit('start')
+    }
+    
+    
+     const questions = [
     {
 			questionText: 'Who is your Professor for CS490?',
 			answerOptions: [
@@ -57,11 +63,7 @@ function App() {
 		
 	];
 
-	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
-
-	const handleAnswerOptionClick = (isCorrect) => {
+    	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
 			setScore(score + 1);
 		}
@@ -73,29 +75,44 @@ function App() {
 			setShowScore(true);
 		}
 	};
-  
-  return (
+    
+    return (
     <div className="App">
-      <Login socket={socket}/>
-      <br />
-      
-
       
           <br />
           
           
-
+          <div className= "quiz">
+              {showScore ? (
+      				<div className='score-section'>
+      					You scored {score} out of {questions.length}
+      				</div>
+    			    ) :
+    			  (
+  				<>
+  					<div className='question-section'>
+    						<div className='question-count'>
+    							<span>Question {currentQuestion + 1}/{questions.length} </span>
+    						</div>
+    						<div className='question-text'>{questions[currentQuestion].questionText}</div>
+  					</div>
+  					
+  					<div className='answer-section'>
+    						{questions[currentQuestion].answerOptions.map((answerOption) => (
+    							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+    						))}
+  					</div>
+  				</>
+  			)}
+        </div>
           <br/>
           <br/>
           
-          <div className="footer">
-            <p>
-               Developed by Akshay Patel, Albert Wang, Marco Paparatto, Shayed Ahmed
-            </p>
-          </div>
+      <Logout />
      
     </div>
-  );
+    
+    )
 }
 
-export default App;
+export default Game;

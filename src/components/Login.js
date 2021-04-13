@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
+import Game from './Game'
+import '../style.css'
 
 
 //google cilent Id 
-const clientId ='808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com';
+const clientId ='376623928596-8bna7aqfer6au922c15rqdba0hnnkngu.apps.googleusercontent.com';
 
-function Login() {
+function Login(props) {
+  
+  const { socket }  = props;
   
   const[name,setName]= useState("");
   
@@ -55,6 +59,16 @@ function Login() {
       'Failed to login. 😢 '
     );
   };
+  
+  function isLoggedIn(){
+    if(name !== ''){
+      return(
+        <div>
+          <Game socket={socket}/>
+        </div>
+      )
+    }
+  }
 
   return (
     <div>
@@ -71,6 +85,9 @@ function Login() {
         cookiePolicy={'single_host_origin'}
         isSignedIn={true}
       />
+      <div class="Game">
+        {isLoggedIn()}
+      </div>
     </div>
   );
 }
