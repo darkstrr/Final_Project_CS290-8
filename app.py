@@ -8,6 +8,7 @@ from flask import Flask, send_from_directory, json
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from music_fetch import MusicFetch
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -48,6 +49,11 @@ def on_connect():
 def on_disconnect():
     """function print message into console when disconnected is ON"""
     print('User disconnected!')
+
+@socketio.on('start')
+def on_start():
+    """function starts the game when button is pressed"""
+    MusicFetch()
     
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":

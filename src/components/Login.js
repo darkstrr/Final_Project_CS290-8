@@ -6,7 +6,9 @@ import Game from './Game'
 //google cilent Id 
 const clientId ='376623928596-8bna7aqfer6au922c15rqdba0hnnkngu.apps.googleusercontent.com';
 
-function Login() {
+function Login(props) {
+  
+  const { socket }  = props;
   
   const[name,setName]= useState("");
   
@@ -61,7 +63,7 @@ function Login() {
     if(name !== ''){
       return(
         <div>
-          <Game />
+          <Game socket={socket}/>
         </div>
       )
     }
