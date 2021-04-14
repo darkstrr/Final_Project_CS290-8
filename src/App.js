@@ -13,16 +13,9 @@ function App() {
   return (
     <div className="App">
       <Login socket={socket}/>
-      <br />
+      <br/>
+      <br/>
       
-
-      
-          <br />
-          
-          
-
-          <br/>
-          <br/>
           
           <div className="footer">
             <p>
