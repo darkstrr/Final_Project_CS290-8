@@ -8,9 +8,9 @@ function Game(props) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
-	const [gameState, setGameState] = useState(false)
-	const [tracks, setTracks] = useState([])
-	const [questions, setQuestions] = useState([])
+	const [gameState, setGameState] = useState(false);
+	const [tracks, setTracks] = useState([]);
+	const [questions, setQuestions] = useState([]);
     
     function RestartGame(condition = true){
         socket.emit('start')
@@ -81,6 +81,7 @@ function Game(props) {
 		const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
+			document.getElementById("sample").load()
 		} else {
 			setShowScore(true);
 		}
@@ -102,7 +103,7 @@ function Game(props) {
 	    							<span>Question {currentQuestion + 1}/{questions.length} </span>
 	    						</div>
 	    						<div className='question-text'>
-	    						<audio controls>
+	    						<audio id="sample" controls>
 	    							<source src={questions[currentQuestion].questionText} type="audio/mpeg"/>
 	    						</audio>
 	    						</div>
