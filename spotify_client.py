@@ -131,9 +131,10 @@ class SpotifyAPI():
             headers=headers,
             )
     
-        theReponse = song_lyrics.json()['response']
-        first_hit = theReponse['hits'][0]
-        lyrics_url = first_hit['result']['url']
+        the_reponse = song_lyrics.json()['response']
+        first_hit = the_reponse['hits'][0]
+        result_first_hit = first_hit['result']
+        lyrics_url = result_first_hit['url']
         return lyrics_url
     
     def check_preview_url(self, song_preview_url):
