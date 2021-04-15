@@ -134,3 +134,5 @@ class SpotifyAPI():
     def check_preview_url(self, song_preview_url):
         if (song_preview_url == None):
             return False
+        else:
+            return True
