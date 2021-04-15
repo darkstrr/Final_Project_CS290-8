@@ -117,6 +117,9 @@ class SpotifyAPI():
         return spotify_url
     
     def get_lyrics(self, song_name):
+        '''
+        Gets lyrics of a song (song name needed as param)
+        '''
         load_dotenv(find_dotenv())
         url = f"https://api.genius.com/search?q={song_name}"
         headers = {
@@ -129,7 +132,8 @@ class SpotifyAPI():
             )
     
         theReponse = song_lyrics.json()['response']
-        lyrics_url = theReponse['hits'][0]['result']['url']
+        first_hit = theReponse['hits'][0]
+        lyrics_url = first_hit['result']['url']
         return lyrics_url
     
     def check_preview_url(self, song_preview_url):
