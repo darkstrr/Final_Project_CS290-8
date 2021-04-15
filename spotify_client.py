@@ -137,6 +137,9 @@ class SpotifyAPI():
         return lyrics_url
     
     def check_preview_url(self, song_preview_url):
+        '''
+        Checks if song has a preview url
+        '''
         if (song_preview_url == None):
             return False
         else:
