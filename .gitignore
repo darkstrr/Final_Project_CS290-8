@@ -1,3 +1,5 @@
 .env.development.local
 .env
 node_modules
+__pycache__/
+node_modules/

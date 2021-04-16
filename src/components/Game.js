@@ -1,21 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Logout from './Logout';
+import React, { useState, useRef, useEffect } from "react";
+import Logout from "./Logout";
 
 function Game(props) {
-      
-    const { socket } = props;
-    
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
-	const [gameState, setGameState] = useState(false)
-    
-    function RestartGame(){
-        socket.emit('start')
-    }
-    
-    
-     const questions = [
+  const { socket } = props;
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
+  const [gameState, setGameState] = useState(false);
+  const [tracks, setTracks] = useState([]);
+  const [questions, setQuestions] = useState([]);
+
+  function RestartGame(condition = true) {
+    socket.emit("start");
+  }
+
+  useEffect(() => {
+    socket.on("tracks", (data) => {
+      setQuestions(data);
+      setGameState(true);
+    });
+  }, []);
+  /*     const questions = [
     {
 			questionText: 'Who is your Professor for CS490?',
 			answerOptions: [
@@ -62,62 +68,83 @@ function Game(props) {
 			],
 		},
 		
-	];
+	]; */
 
-    	const handleAnswerOptionClick = (isCorrect) => {
-		if (isCorrect) {
-			setScore(score + 1);
-		}
+  const handleAnswerOptionClick = (isCorrect) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
 
-		const nextQuestion = currentQuestion + 1;
-		if (nextQuestion < questions.length) {
-			setCurrentQuestion(nextQuestion);
-		} else {
-			setShowScore(true);
-		}
-	};
-	
-	function Questions(){
-		
-	}
-    
-    return (
-    <div className="App">
-      
-          <br />
-          
-          
-          <div className= "quiz">
-              {showScore ? (
-      				<div className='score-section'>
-      					You scored {score} out of {questions.length}
-      				</div>
-    			    ) :
-    			  (
-  				<>
-  					<div className='question-section'>
-    						<div className='question-count'>
-    							<span>Question {currentQuestion + 1}/{questions.length} </span>
-    						</div>
-    						<div className='question-text'>{questions[currentQuestion].questionText}</div>
-  					</div>
-  					
-  					<div className='answer-section'>
-    						{questions[currentQuestion].answerOptions.map((answerOption) => (
-    							<button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-    						))}
-  					</div>
-  				</>
-  			)}
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < questions.length) {
+      setCurrentQuestion(nextQuestion);
+      document.getElementById("sample").load();
+    } else {
+      setShowScore(true);
+    }
+  };
+
+  function Display() {
+    if (gameState)
+      return (
+        <div className="quiz">
+          {showScore ? (
+            <div className="score-section">
+              You scored {score} out of {questions.length}
+            </div>
+          ) : (
+            <>
+              <div className="question-section">
+                <div className="question-count">
+                  <span>
+                    Question {currentQuestion + 1}/{questions.length}{" "}
+                  </span>
+                </div>
+                <div className="question-text">
+                  <audio id="sample" controls>
+                    <source
+                      src={questions[currentQuestion].questionText}
+                      type="audio/mpeg"
+                    />
+                  </audio>
+                </div>
+              </div>
+
+              <div className="answer-section">
+                {questions[currentQuestion].answerOptions.map(
+                  (answerOption) => (
+                    <button
+                      onClick={() =>
+                        handleAnswerOptionClick(answerOption.isCorrect)
+                      }
+                    >
+                      {answerOption.answerText}
+                    </button>
+                  )
+                )}
+              </div>
+            </>
+          )}
         </div>
-          <br/>
-          <br/>
-          
+      );
+  }
+
+  return (
+    <div className="Game">
+      <br />
+      <div className="start">
+        <button type="button" onClick={() => RestartGame(true)}>
+          Start Game
+        </button>
+      </div>
+      <br />
+      {Display()}
+
+      <br />
+
       <Logout />
-     
     </div>
-    
-    )
+  );
 }
 
 export default Game;

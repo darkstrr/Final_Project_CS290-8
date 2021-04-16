@@ -1,13 +1,14 @@
-import React from 'react';
-import { GoogleLogout } from 'react-google-login';
+import React from "react";
+import { GoogleLogout } from "react-google-login";
 
-//google cilent Id 
-const clientId ='808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com';
+//google cilent Id
+const clientId =
+  "808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com";
 
 function Logout() {
   const onSuccessLogout = () => {
-    console.log('Logout made successfully');
-    alert('Logout made successfully ✌');
+    console.log("Logout made successfully");
+    alert("Logout made successfully ✌");
   };
 
   return (
@@ -20,6 +21,5 @@ function Logout() {
     </div>
   );
 }
-
 
 export default Logout;
