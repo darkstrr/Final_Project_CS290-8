@@ -1,8 +1,7 @@
 .App {
   text-align: center;
   position: center;
-  }
-
+}
 
 .button {
   align-self: center;
@@ -36,8 +35,8 @@
 }
 
 .quiz {
-  background-color:white;
-  position:center;
+  background-color: white;
+  position: center;
   text-align: center;
   width: 50%;
   min-height: 200px;
@@ -50,6 +49,16 @@
   margin-right: auto;
   justify-content: space-evenly;
 }
+
+.start {
+  position: center;
+  text-align: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-evenly;
+}
+
 .score-section {
   display: flex;
   font-size: 24px;
@@ -58,7 +67,7 @@
 
 /* QUESTION/TIMER/LEFT SECTION */
 .question-section {
-  width:100%;
+  width: 100%;
   position: relative;
 }
 
@@ -84,6 +93,8 @@
   text-align: center;
 }
 
+.start {
+}
 /* ANSWERS/RIGHT SECTION */
 .answer-section {
   width: 50%;
