@@ -15,7 +15,7 @@ def MusicFetch():
     selected_tracks = []
     """function fetching music for the game"""
     load_dotenv(find_dotenv())
-    client = SpotifyAPI(os.getenv('client_id'), os.getenv('client_secret'))
+    client = SpotifyAPI(os.getenv('CLIENT_ID'), os.getenv('CLIENT_SECRET'))
     client.get_access_token()
     for y in range(0, 5):
         tracks = client.get_list_of_track_info(artists[randint(
