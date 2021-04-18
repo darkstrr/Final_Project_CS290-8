@@ -10,7 +10,6 @@ const socket = io(); // Connects to socket connection
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       <Login socket={socket} />
       <br />
 
@@ -24,19 +23,6 @@ function App() {
           Developed by Akshay Patel, Albert Wang, Marco Paparatto, Shayed Ahmed
         </p>
       </div>
-=======
-      <Login socket={socket}/>
-      <br/>
-      <br/>
-      
-          
-          <div className="footer">
-            <p>
-               Developed by Akshay Patel, Albert Wang, Marco Paparatto, Shayed Ahmed
-            </p>
-          </div>
-     
->>>>>>> b9771fcbefa339e845370e8a30720e20d39cd21d
     </div>
   );
 }
