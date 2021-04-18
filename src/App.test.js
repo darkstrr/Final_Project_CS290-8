@@ -5,7 +5,7 @@ import App from './App';
 
 test("User is able to successfully login", () => {
   render(<App />);
-
+         
   const googleLoginButton  = screen.getByText("Google Login"); // Get google login button by text
   expect(googleLoginButton).toBeInTheDocument(); // check if login button is on page
   fireEvent.click(googleLoginButton); // click the login button
