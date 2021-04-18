@@ -25,4 +25,8 @@ test("Checks to see if music game can be started", () => {
   
   const startGameButton = screen.getByTestId("start_game");
   expect(startGameButton).toBeInTheDocument();
+  fireEvent.click(startGameButton);
+  
+  const questionText = screen.getByText("Question");
+  expect(questionText).toBeInTheDocument();
 });
