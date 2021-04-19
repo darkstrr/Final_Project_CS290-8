@@ -14,6 +14,17 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())  # This is to load your API keys from .env
 
+roomScore = {
+    "default": {
+      "roomName": "",
+      "players": {
+          "player1": {
+            "name": "",
+            "score": 0,
+          }
+      }
+    },
+}
 #Flask app name
 app = Flask(__name__, static_folder='./build/static')
 
@@ -63,9 +74,37 @@ def on_start():
 def logged(data):
     """add user to database"""
     people = models.Person(username=data, password='default')
-    db.session.add(people)
-    db.session.commit()
+    #db.session.add(people)
+    #db.session.commit()
+    if(addUser(data, 'default')):
+        print('success!')
+        
     
+def addUser(user, room):
+    newPlayer = {
+        user: {
+            "name": user,
+            "score": 0,
+        }
+    }
+    #add user if room already exists
+    if room in roomScore.keys():
+        roomScore[room]["players"].update(newPlayer)
+    #if room does not exist, create a new room with the user
+    else:
+        d1 = {
+            room: {
+                "roomName": room,
+                "players": {
+                   user: {
+                        "name": user,
+                        "score": 0,
+                    }
+                }
+            },
+        }
+        roomScore.update(d1)
+    return True
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":
     # Note that we don't call app.run anymore. We call socketio.run with app arg
