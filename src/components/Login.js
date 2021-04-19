@@ -78,7 +78,7 @@ function Login(props) {
       <br />
       <GoogleLogin
         clientId={clientId}
-        buttonText="Login"
+        buttonText="Google Login"
         onSuccess={responseGoogle}
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}
