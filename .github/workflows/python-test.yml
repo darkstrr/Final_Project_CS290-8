@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -36,9 +36,6 @@ jobs:
           
       - name: Install dependencies
         run: pip install -r requirements.txt 
-        
-      - name: Lint files
-        run: pylint **/*.py
         
       - name: Run tests
         run: python -m unittest
