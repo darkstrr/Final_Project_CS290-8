@@ -20,6 +20,7 @@
     6. pip install psycopg2-binary
     7. pip install Flask-SQLAlchemy==2.1
     8. npm i react-google-login
+    9. npm install --save react-audio-player
 
 ## Setup
 
