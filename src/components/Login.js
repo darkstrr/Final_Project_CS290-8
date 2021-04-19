@@ -3,9 +3,13 @@ import { GoogleLogin } from "react-google-login";
 import Game from "./Game";
 import "../style.css";
 
+//This load and configure dotenv
+require('dotenv').config();
+
 //google cilent Id
-const clientId =
-  "808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com";
+const clientId = '808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com';
+//const clientId = process.env.Google_ClientID;
+
 
 function Login(props) {
   const { socket } = props;
