@@ -56,7 +56,7 @@ function Login(props) {
 
   function isLoggedIn() {
     if (name !== "") {
-      socket.emit("login");
+      socket.emit("login", name);
       return (
         <div>
           <Game socket={socket} />

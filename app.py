@@ -23,6 +23,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+import models
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app,
@@ -57,7 +58,14 @@ def on_start():
     tracks = MusicFetch()
     socketio.emit('tracks', tracks, broadcast=True)
 
+@socketio.on('login')
 
+def logged(data):
+    """add user to database"""
+    people = models.Person(username=data, password='default')
+    db.session.add(people)
+    db.session.commit()
+    
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":
     # Note that we don't call app.run anymore. We call socketio.run with app arg
