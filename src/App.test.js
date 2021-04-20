@@ -7,14 +7,14 @@ import  Logout  from './components/Logout.js';
 import  Game  from './components/Game.js';
 
 
-test("User is able to successfully login and logout", () => {
+test("User is able to successfully view logout button after logging in", () => {
   render(<App />);
 
   // Login test button
   const googleLoginButton  = screen.getByText("Google Login"); // Get google login button by text
   expect(googleLoginButton).toBeInTheDocument(); // check if login button is on page
   fireEvent.click(googleLoginButton); // click the login button
-  
+
   // Logout test
   const wrapper = mount(<Logout />);
   // checks if logout button exists
