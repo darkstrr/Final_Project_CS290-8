@@ -68,6 +68,21 @@ function Login(props) {
       );
     }
   }
+  
+  function loginButton(){
+    if (name == ""){
+      return(     
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="Google Login"
+          onSuccess={responseGoogle}
+          onFailure={onFailure}
+          cookiePolicy={"single_host_origin"}
+          isSignedIn={true}
+        />
+      );
+    }
+  }
 
   return (
     <div>
@@ -76,14 +91,7 @@ function Login(props) {
       <h2>Email 📧: {email}</h2>
       <img src={url} alt={name} />
       <br />
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Google Login"
-        onSuccess={responseGoogle}
-        onFailure={onFailure}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
-      />
+      {loginButton()}
       <div class="Game">{isLoggedIn()}</div>
     </div>
   );
