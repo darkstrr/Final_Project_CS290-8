@@ -96,7 +96,6 @@ function Game(props) {
 
       <br />
 
-      <Logout />
     </div>
   );
 }
