@@ -1,6 +1,7 @@
 import { useState,  useEffect } from "react";
-import Logout from "./Logout";
 import ReactAudioPlayer from 'react-audio-player';
+import Timer from './Timer.js';
+
 function Game(props) {
   const { socket } = props;
 
@@ -37,11 +38,19 @@ function Game(props) {
       setShowScore(true);
     }
   };
+  
+  
+ 
 
   function Display() {
     if (gameState)
       return (
         <div className="quiz">
+          
+          <div className= 'timer'>
+              <Timer />
+          </div>
+          
           {showScore ? (
             <div className="score-section">
               You scored {score} out of {questions.length}
@@ -50,6 +59,7 @@ function Game(props) {
             <>
               <div className="question-section">
                 <div className="question-count">
+                  
                   <span>
                     Question {currentQuestion + 1}/{questions.length}{" "}
                   </span>
@@ -93,7 +103,6 @@ function Game(props) {
       </div>
       <br />
       {Display()}
-
       <br />
 
     </div>
