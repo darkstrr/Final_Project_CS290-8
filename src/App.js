@@ -11,9 +11,7 @@ function App() {
     <div className="App">
       <Login socket={socket} />
       <br />
-
       <br />
-
       <br />
       <br />
 

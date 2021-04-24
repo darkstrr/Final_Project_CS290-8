@@ -83,9 +83,11 @@
   margin-bottom: 12px;
 }
 
-.timer-text {
-  background: rgb(230, 153, 12);
+.timer {
+  background: lightblue;
   padding: 15px;
+  height: 70%;
+  width: 20%;
   margin-top: 20px;
   margin-right: 20px;
   border: 5px solid rgb(255, 189, 67);
@@ -93,8 +95,7 @@
   text-align: center;
 }
 
-.start {
-}
+
 /* ANSWERS/RIGHT SECTION */
 .answer-section {
   width: 50%;
