@@ -14,15 +14,34 @@ function Game(props) {
 
   function RestartGame(condition = true) {
     socket.emit("start");
+    setCurrentQuestion(0);
+    setScore(0);
   }
 
   useEffect(() => {
     socket.on("tracks", (data) => {
       setQuestions(data);
       setGameState(true);
+      setShowScore(false);
+    });
+    
+    socket.on("time", (data) => {
+      TimeOut(data);
     });
     // eslint-disable-next-line
   }, []);
+  
+  function TimeOut(CQ){
+    console.log(questions)
+    const nextQuestion = CQ + 1;
+      if (nextQuestion < 5) {
+      setCurrentQuestion(nextQuestion);
+      document.getElementById("sample").load();
+    } else {
+      setShowScore(true);
+      socket.emit("gameend")
+    }
+  }
   
 
   const handleAnswerOptionClick = (isCorrect) => {
@@ -34,8 +53,10 @@ function Game(props) {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
       document.getElementById("sample").load();
+      socket.emit("nextquestion")
     } else {
       setShowScore(true);
+      socket.emit("gameend")
     }
   };
   
@@ -48,7 +69,7 @@ function Game(props) {
         <div className="quiz">
           
           <div className= 'timer'>
-              <Timer />
+              <Timer socket={socket} question={currentQuestion}/>
           </div>
           
           {showScore ? (

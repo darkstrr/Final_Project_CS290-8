@@ -68,9 +68,24 @@ def on_start():
     """function starts when the start game button is pressed"""
     tracks = MusicFetch()
     socketio.emit('tracks', tracks, broadcast=True)
+    
+@socketio.on('timeup')
+def on_time(data):
+    """Function for when the quesiton time runs out"""
+    socketio.emit('time', data, broadcast=True)
+    print("Time up")
+
+@socketio.on('nextquestion')
+def next_question():
+    """When the next quesiton appears"""
+    socketio.emit('nextquestion')
+    
+@socketio.on('gameend')
+def game_end():
+    """When the game ends"""
+    socketio.emit('gameend')
 
 @socketio.on('login')
-
 def logged(data):
     """add user to database"""
     people = models.Person(username=data, password='default')
