@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 export default function Timer(props) {
   const { socket } = props;
   const { question } = props;
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(45)
   const [showTime, setShowTime] = useState(true);
   const id = useRef(null);
   const clear = () => {
@@ -22,12 +22,12 @@ export default function Timer(props) {
     if (timer === 0) {
       //clear();
       setTimer("Time Up!!!");
-      setTimer(10);
+      setTimer(45);
       socket.emit("timeup", question);
     }
 
     socket.on("nextquestion", (data) => {
-      setTimer(10);
+      setTimer(45);
     });
 
     socket.on("gameend", (data) => {
@@ -36,7 +36,7 @@ export default function Timer(props) {
     });
 
     socket.on("tracks", (data) => {
-      setTimer(10);
+      setTimer(45);
       setShowTime(true);
     });
   });
