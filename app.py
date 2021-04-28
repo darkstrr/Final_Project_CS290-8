@@ -16,13 +16,13 @@ load_dotenv(find_dotenv())  # This is to load your API keys from .env
 
 roomScore = {
     "default": {
-      "roomName": "",
-      "players": {
-          "player1": {
-            "name": "",
-            "score": 0,
-          }
-      }
+        "roomName": "",
+        "players": {
+            "player1": {
+                "name": "",
+                "score": 0,
+            }
+        }
     },
 }
 #Flask app name
@@ -68,22 +68,26 @@ def on_start():
     """function starts when the start game button is pressed"""
     tracks = MusicFetch()
     socketio.emit('tracks', tracks, broadcast=True)
-    
+
+
 @socketio.on('timeup')
 def on_time(data):
     """Function for when the quesiton time runs out"""
     socketio.emit('time', data, broadcast=True)
     print("Time up")
 
+
 @socketio.on('nextquestion')
 def next_question():
     """When the next quesiton appears"""
     socketio.emit('nextquestion')
-    
+
+
 @socketio.on('gameend')
 def game_end():
     """When the game ends"""
     socketio.emit('gameend')
+
 
 @socketio.on('login')
 def logged(data):
@@ -91,10 +95,10 @@ def logged(data):
     people = models.Person(username=data, password='default')
     #db.session.add(people)
     #db.session.commit()
-    if(addUser(data, 'default')):
+    if (addUser(data, 'default')):
         print('success!')
-        
-    
+
+
 def addUser(user, room):
     newPlayer = {
         user: {
@@ -111,7 +115,7 @@ def addUser(user, room):
             room: {
                 "roomName": room,
                 "players": {
-                   user: {
+                    user: {
                         "name": user,
                         "score": 0,
                     }
@@ -120,6 +124,8 @@ def addUser(user, room):
         }
         roomScore.update(d1)
     return True
+
+
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":
     # Note that we don't call app.run anymore. We call socketio.run with app arg

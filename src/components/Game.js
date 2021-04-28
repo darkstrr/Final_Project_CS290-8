@@ -1,6 +1,6 @@
-import { useState,  useEffect } from "react";
-import ReactAudioPlayer from 'react-audio-player';
-import Timer from './Timer.js';
+import { useState, useEffect } from "react";
+import ReactAudioPlayer from "react-audio-player";
+import Timer from "./Timer.js";
 
 function Game(props) {
   const { socket } = props;
@@ -24,25 +24,24 @@ function Game(props) {
       setGameState(true);
       setShowScore(false);
     });
-    
+
     socket.on("time", (data) => {
       TimeOut(data);
     });
     // eslint-disable-next-line
   }, []);
-  
-  function TimeOut(CQ){
-    console.log(questions)
+
+  function TimeOut(CQ) {
+    console.log(questions);
     const nextQuestion = CQ + 1;
-      if (nextQuestion < 5) {
+    if (nextQuestion < 5) {
       setCurrentQuestion(nextQuestion);
       document.getElementById("sample").load();
     } else {
       setShowScore(true);
-      socket.emit("gameend")
+      socket.emit("gameend");
     }
   }
-  
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
@@ -53,25 +52,21 @@ function Game(props) {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
       document.getElementById("sample").load();
-      socket.emit("nextquestion")
+      socket.emit("nextquestion");
     } else {
       setShowScore(true);
-      socket.emit("gameend")
+      socket.emit("gameend");
     }
   };
-  
-  
- 
 
   function Display() {
     if (gameState)
       return (
         <div className="quiz">
-          
-          <div className= 'timer'>
-              <Timer socket={socket} question={currentQuestion}/>
+          <div className="timer">
+            <Timer socket={socket} question={currentQuestion} />
           </div>
-          
+
           {showScore ? (
             <div className="score-section">
               You scored {score} out of {questions.length}
@@ -80,19 +75,19 @@ function Game(props) {
             <>
               <div className="question-section">
                 <div className="question-count">
-                  
                   <span>
                     Question {currentQuestion + 1}/{questions.length}{" "}
                   </span>
                 </div>
                 <div className="question-text">
-                <ReactAudioPlayer id="sample"
-                  src={questions[currentQuestion].questionText}
-                  type="audio/mpeg"
-                  autoPlay
-                  controls
-                />
-              </div>
+                  <ReactAudioPlayer
+                    id="sample"
+                    src={questions[currentQuestion].questionText}
+                    type="audio/mpeg"
+                    autoPlay
+                    controls
+                  />
+                </div>
               </div>
 
               <div className="answer-section">
@@ -125,7 +120,6 @@ function Game(props) {
       <br />
       {Display()}
       <br />
-
     </div>
   );
 }
