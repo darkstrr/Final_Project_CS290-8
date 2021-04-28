@@ -35,8 +35,8 @@
 }
 
 .quiz {
-  background-color:white;
-  position:center;
+  background-color: white;
+  position: center;
   text-align: center;
   width: 50%;
   min-height: 200px;
@@ -94,7 +94,6 @@
   border-radius: 15px;
   text-align: center;
 }
-
 
 /* ANSWERS/RIGHT SECTION */
 .answer-section {
