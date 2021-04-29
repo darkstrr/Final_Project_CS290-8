@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
-import ReactAudioPlayer from "react-audio-player";
-import Timer from "./Timer.js";
+import { useState,  useEffect } from "react";
+import ReactAudioPlayer from 'react-audio-player';
+import Timer from './Timer.js';
+import Leaderboard from './Leaderboard.js';
 
 function Game(props) {
-  const { socket } = props;
+  const { socket, username } = props;
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [gameState, setGameState] = useState(false);
+  const [name, setName] = useState(props.username);
+  const [leaderboard, setLeaderboard] = useState([]);
   //const [tracks, setTracks] = useState([]);
   const [questions, setQuestions] = useState([]);
 
@@ -27,6 +30,9 @@ function Game(props) {
 
     socket.on("time", (data) => {
       TimeOut(data);
+    });
+    socket.on("Leaderboard", (topTen) => {
+      setLeaderboard(topTen);
     });
     // eslint-disable-next-line
   }, []);
@@ -55,6 +61,7 @@ function Game(props) {
       socket.emit("nextquestion");
     } else {
       setShowScore(true);
+      socket.emit("Leaderboard",{"name": name, "score": score});
       socket.emit("gameend");
     }
   };
@@ -105,6 +112,9 @@ function Game(props) {
               </div>
             </>
           )}
+          <div className="Leaderboard">
+            <Leaderboard username={name} topTen={leaderboard} />
+          </div>
         </div>
       );
   }
