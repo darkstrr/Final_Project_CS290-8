@@ -152,15 +152,6 @@ button svg {
   position: absolute;
   top: 0;
   right: 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  white-space: pre-wrap;
-  height: 300px;
-  width: 300px;
-  overflow: auto;
-  padding: 2%;
-  text-align: center;
   
   border: 1px blue; /* some kind of blue border */
   -webkit-border-radius: 4px;
@@ -176,7 +167,26 @@ button svg {
   
 }
 
+.chat_history {
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: pre-wrap;
+    height: 200px;
+    width: 200px;
+    overflow: auto;
+    border: 3px solid blue;
+    padding: 2%;
+    text-align: center;
+    color: grey;
+}
+
 .chat_title {
   color: blue;
   text-shadow: 0 0 5px blue, 0 0 10px blue;
+}
+
+.send_chat_button {
+  position: relative;
+  margin: 0;
 }

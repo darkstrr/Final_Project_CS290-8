@@ -18,6 +18,9 @@ export default function Chat()
           const message = inputRef.current.value;
           // If your own client sends a message, we add it to the list of messages to 
           // render it on the UI.
+          if (message.length == 0) {
+              return;
+          }
           setMessages(prevMessages => [...prevMessages, message]);
           socket.emit('chat', { message: message });
         }
@@ -39,10 +42,14 @@ export default function Chat()
             <div className="Chat">
             
                 <h2 className="chat_title">Chat</h2>
-                <input ref={inputRef} placeholder="Type message..." type="text" />
-                <button onClick={onClickButton}>Send</button>
+                <input ref={inputRef} placeholder="Type message..." type="text" onFocus="this.value=''"/>
+                <div className = "send_chat_button">
+                    <button onClick={onClickButton}>Send</button>
+                </div>
                 <br/>
-                {messages.map((item, index) => <Text key={index} msg={item} />)}
+                <div className="chat_history">
+                    {messages.map((item, index) => <Text key={index} msg={item} />)}
+                </div>
             </div>  
             
         </div>
