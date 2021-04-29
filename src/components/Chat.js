@@ -38,13 +38,11 @@ export default function Chat()
         <div >
             <div className="Chat">
             
-                <h2><u>Chat</u></h2>
+                <h2 className="chat_title">Chat</h2>
                 <input ref={inputRef} placeholder="Type message..." type="text" />
                 <button onClick={onClickButton}>Send</button>
                 <br/>
-                <ul>
-                    {messages.map((item, index) => <Text key={index} msg={item} />)}
-                </ul>
+                {messages.map((item, index) => <Text key={index} msg={item} />)}
             </div>  
             
         </div>
