@@ -63,7 +63,7 @@ function Login(props) {
       socket.emit("login", name);
       return (
         <div>
-          <Game socket={socket} />
+          <Game socket={socket} username={name}/>
         </div>
       );
     }
