@@ -43,8 +43,8 @@ export default function Chat()
             
                 <h2 className="chat_title">Chat</h2>
                 <input ref={inputRef} placeholder="Type message..." type="text" onFocus="this.value=''"/>
-                <div className = "send_chat_button">
-                    <button onClick={onClickButton}>Send</button>
+                <div>
+                    <button className = "send_chat_button" onClick={onClickButton}>Send</button>
                 </div>
                 <br/>
                 <div className="chat_history">
