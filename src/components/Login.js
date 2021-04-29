@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 import Game from "./Game";
+import Chat from "./Chat";
 import "../style.css";
 
 //This load and configure dotenv
-require('dotenv').config();
+require("dotenv").config();
 
 //google cilent Id
-const clientId = '808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com';
+const clientId = "808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com";
 //const clientId = process.env.Google_ClientID;
-
 
 function Login(props) {
   const { socket } = props;
@@ -64,14 +64,15 @@ function Login(props) {
       return (
         <div>
           <Game socket={socket} username={name}/>
+          <Chat />
         </div>
       );
     }
   }
-  
-  function loginButton(){
-    if (name == ""){
-      return(     
+
+  function loginButton() {
+    if (name == "") {
+      return (
         <GoogleLogin
           clientId={clientId}
           buttonText="Google Login"

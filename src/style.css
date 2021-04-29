@@ -3,6 +3,17 @@
   position: center;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color:gray;
+  color: white;
+  text-align: center;
+}
+
 .button {
   align-self: center;
   cursor: pointer;
@@ -35,8 +46,8 @@
 }
 
 .quiz {
-  background-color:white;
-  position:center;
+  background-color: white;
+  position: center;
   text-align: center;
   width: 50%;
   min-height: 200px;
@@ -95,7 +106,6 @@
   text-align: center;
 }
 
-
 /* ANSWERS/RIGHT SECTION */
 .answer-section {
   width: 50%;
@@ -137,4 +147,17 @@ button:focus {
 
 button svg {
   margin-right: 5px;
+}
+.Chat {
+  background-color:white;
+  color: black;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+  
 }
