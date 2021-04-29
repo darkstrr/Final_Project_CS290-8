@@ -18,7 +18,7 @@ function Leaderboard(props) {
       <h2>Leaderboard</h2>
       {showTopTen === true ? (
         <div>
-          <button type="button" onClick={onToggleTopTen}>Hide top 10</button>
+          <button type="button" onClick={onToggleTopTen}>Hide Leaderboard</button>
           <table>
             <thead>
               <tr>
@@ -46,7 +46,7 @@ function Leaderboard(props) {
         </div>
       ) : (
         <div>
-          <button type="button" onClick={onToggleTopTen}>Show top 10</button>
+          <button type="button" onClick={onToggleTopTen}>Show Leaderboard</button>
         </div>
       )}
     </div>
