@@ -125,6 +125,15 @@ def addUser(user, room):
         roomScore.update(d1)
     return True
 
+# When a client emits the event 'chat' to the server, this function is run
+# 'chat' is a custom event name that we just decided
+@socketio.on('chat')
+def on_chat(data):
+    ''' data is whatever arg you pass in your emit call on client'''
+    print(str(data))
+    # This emits the 'chat' event from the server to all clients except for
+    # the client that emmitted the event that triggered this function
+    socketio.emit('chat', data, broadcast=True, include_self=False)
 
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":

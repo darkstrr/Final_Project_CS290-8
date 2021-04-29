@@ -10,11 +10,6 @@ function App() {
   return (
     <div className="App">
       <Login socket={socket} />
-      <br />
-      <br />
-      <br />
-      <br />
-
       <div className="footer">
         <p>
           Developed by Akshay Patel, Albert Wang, Marco Paparatto, Shayed Ahmed
