@@ -9,7 +9,8 @@ def MusicFetch():
         '4tZwfgrHOc3mvqYlEYSvVi', '4YRxDV8wJFPHPTeXepOstw',
         '3xU8YsNNkmWSPewlB18NUz', '5f4QpKfy7ptCHwTqspnSJI',
         '6vWDO969PvNqNYHIOW5v0m', '7jefIIksOi1EazgRTfW2Pk',
-        '0oSGxfWSnnOXhD2fKuz2Gy'
+        '0oSGxfWSnnOXhD2fKuz2Gy', '4gzpq5DPGxSnKTe4SA8HAU',
+        '6eUKZXaKkcviH0Ku9w2n3V'
     ]
     return_list = []
     selected_tracks = []
@@ -17,9 +18,12 @@ def MusicFetch():
     load_dotenv(find_dotenv())
     client = SpotifyAPI(os.getenv('CLIENT_ID'), os.getenv('CLIENT_SECRET'))
     client.get_access_token()
+    # Run 5 times for 5 questions
     for y in range(0, 5):
+        #Pull random tracks from a random artist
         tracks = client.get_list_of_track_info(artists[randint(
             0, (len(artists) - 1))])
+        
         for x in range(0, 4):
             print(len(tracks))
             track = randint(0, (len(tracks) - 1))
@@ -47,6 +51,7 @@ def MusicFetch():
             })
 
         shuffle(return_list[y]["answerOptions"])
+        selected_tracks.clear()
 
     print(return_list)
     return return_list
