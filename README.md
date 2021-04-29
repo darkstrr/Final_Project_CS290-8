@@ -8,7 +8,7 @@
 
 ## Industry Mentor: Anita Anderson (Facebook)
 
-## Music Game web app.
+## Music Guessing Quiz Web App.
 
 ## Requirements
 
@@ -36,13 +36,7 @@
     Run command in another terminal, cd into the project directory, and run npm run start
     Preview web page in browser '/'
 
-## Deploy to Heroku
-
-    Create a Heroku app: heroku create --buildpack heroku/python
-    Add nodejs buildpack: heroku buildpacks:add --index 1 heroku/nodejs
-    Create a new remote DB on your Heroku app: heroku addons:create heroku-postgresql:hobby-dev
-    Push to Heroku: git push heroku master
 
 ## Heroku app link:
 
-       https://music-guessing-quiz.herokuapp.com/
+       https://music-guesserv2.herokuapp.com/
