@@ -15,14 +15,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())  # This is to load your API keys from .env
 
 roomScore = {
-    "default": {
-        "roomName": "",
-        "players": {
-            "player1": {
-                "name": "",
-                "score": 0,
-            }
-        }
+      "players": {
     },
 }
 #Flask app name
@@ -92,6 +85,8 @@ def game_end():
 @socketio.on('login')
 def logged(data):
     """add user to database"""
+    print(data)
+    print(data)
     people = models.Person(username=data, password='default')
     #db.session.add(people)
     #db.session.commit()
@@ -104,27 +99,35 @@ def addUser(user, room):
         user: {
             "name": user,
             "score": 0,
+            "room": room,
         }
     }
-    #add user if room already exists
-    if room in roomScore.keys():
-        roomScore[room]["players"].update(newPlayer)
-    #if room does not exist, create a new room with the user
-    else:
-        d1 = {
-            room: {
-                "roomName": room,
-                "players": {
-                    user: {
-                        "name": user,
-                        "score": 0,
-                    }
-                }
-            },
-        }
-        roomScore.update(d1)
+    roomScore['players'].update(newPlayer)
     return True
-
+@socketio.on('Leaderboard')
+    
+def update_leaderboard(data):
+    print(type(data))
+    print(str(data))
+    player = roomScore['players'][data['name']]
+    player['score'] = player['score'] + data['score']
+    print(player)
+    print(player['score'])
+    players = get_players()
+    socketio.emit('Leaderboard', players, broadcast=True, include_self=True)
+        
+def get_players():
+    topPlayers = []
+    for key in roomScore['players']:
+        newPlayer = {}
+        newPlayer['username'] = key
+        #print(type(newPlayer['username']))
+        print(roomScore['players'][key])
+        newPlayer['points'] = roomScore['players'][key]['score']
+        topPlayers.append(newPlayer)
+    print(topPlayers)
+    return topPlayers
+            
 # When a client emits the event 'chat' to the server, this function is run
 # 'chat' is a custom event name that we just decided
 @socketio.on('chat')
