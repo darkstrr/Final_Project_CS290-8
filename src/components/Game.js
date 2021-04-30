@@ -123,7 +123,7 @@ function Game(props) {
     <div className="Game">
       <br />
       <div className="start">
-        <button type="button" onClick={() => RestartGame(true)}>
+        <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
           Start Game
         </button>
       </div>
