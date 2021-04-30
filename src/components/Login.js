@@ -3,7 +3,8 @@ import { GoogleLogin } from "react-google-login";
 import Game from "./Game";
 import Chat from "./Chat";
 import "../style.css";
-import image from './image.png';
+import image from '../images/image.png';
+
 //This load and configure dotenv
 require("dotenv").config();
 

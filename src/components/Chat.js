@@ -48,7 +48,9 @@ export default function Chat()
                 </div>
                 <br/>
                 <div className="chat_history">
+                <ul>
                     {messages.map((item, index) => <Text key={index} msg={item} />)}
+                </ul>
                 </div>
             </div>  
             

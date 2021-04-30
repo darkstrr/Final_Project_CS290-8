@@ -75,7 +75,6 @@ body {
 }
 
 .quiz {
-  
   position: center;
   text-align: center;
   width: 53%;
@@ -89,6 +88,7 @@ body {
   margin-right: auto;
   justify-content: space-evenly;
   color: black;
+  background-color: white;
 }
 
 .start {
@@ -102,8 +102,10 @@ body {
 
 .score-section {
   display: flex;
-  font-size: 24px;
+  font-size: 45px;
   align-items: center;
+  font-family: "Brush Script MT", cursive;
+  color: purple;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -179,7 +181,8 @@ button svg {
 }
 .Chat {
   position: absolute;
-  top: 0;
+  float: right;
+  top: 1;
   right: 0;
   
   border: 1px #bfff00; /* some kind of blue border */
@@ -196,6 +199,14 @@ button svg {
   
 }
 
+.Chat.sticky {
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 10;
+  background-color: green;
+  border: 2px solid #4CAF50;
+}
+
 .chat_history {
     display: block;
     margin-left: auto;
@@ -207,7 +218,9 @@ button svg {
     border: 3px solid #bfff00;
     padding: 2%;
     text-align: center;
-    color: white;
+    background: white;
+    color: black;
+    font-size: 1.5em;
 }
 
 .chat_title {
