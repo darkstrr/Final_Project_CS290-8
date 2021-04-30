@@ -15,8 +15,7 @@ function Leaderboard(props) {
 
   return (
     <div>
-      <h2>Leaderboard</h2>
-      {showTopTen === true ? (
+     {showTopTen === true ? (
         <div>
           <button type="button" onClick={onToggleTopTen}>Hide Leaderboard</button>
           <table>
