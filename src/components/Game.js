@@ -123,9 +123,15 @@ function Game(props) {
     <div className="Game">
       <br />
       <div className="start">
+      {gameState ? (
+        <button type="button" onClick={() => RestartGame(true)}>
+          Restart Game
+        </button>
+      ):(
         <button type="button" onClick={() => RestartGame(true)}>
           Start Game
         </button>
+        )}
       </div>
       <br />
       {Display()}
