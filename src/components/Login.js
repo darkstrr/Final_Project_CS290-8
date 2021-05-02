@@ -101,7 +101,7 @@ function Login(props) {
       <br/>
       <br/>
       <div className="about_section">
-        <h1>About Us</h1>
+        <h1 className="about_us_header">About Us</h1>
         <h3>Welcome to the Music Guessing Game!</h3>
         <p>
           We aim to deliver a real-time music guessing game that can be accessed from anywhere as long as you have access to a web browser. Sign in with your Google Account to identify yourselves, and a place to input a room code to join in with friends. The game will consist of a music preview from a random artist/genre, and 4 choices of songs. By selecting one of the choices, the player will be able to earn points based on speed and accuracy. The player with the highest amount of points by the end of the game will be declared the winner!
@@ -112,13 +112,13 @@ function Login(props) {
         </p>
       </div>
       
-      <h2>Our Team</h2>
+      <h1 className="our_team_header">Our Team</h1>
       <div class="row">
         <div class="column">
           <div class="card">
             <div class="container">
               <h2>Shayed Ahmed</h2>
-              <p class="title">Developer</p>
+              <p class="team_member_title">Developer</p>
               <p>sa2255@njit.edu</p>
               <p><button class="button"><a href="mailto:sa2255@njit.edu">Contact</a></button></p>
             </div>
@@ -129,7 +129,7 @@ function Login(props) {
           <div class="card">
             <div class="container">
               <h2>Albert Wang</h2>
-              <p class="title">Developer</p>
+              <p class="team_member_title">Developer</p>
               <p>axw2@njit.edu</p>
               <p><button class="button"><a href="mailto:axw2@njit.edu">Contact</a></button></p>
             </div>
@@ -140,7 +140,7 @@ function Login(props) {
           <div class="card">
             <div class="container">
               <h2>Akshay Patel</h2>
-              <p class="title">Developer</p>
+              <p class="team_member_title">Developer</p>
               <p>ap223@njit.edu</p>
               <p><button class="button"><a href="mailto:ap223@njit.edu">Contact</a></button></p>
             </div>
@@ -151,7 +151,7 @@ function Login(props) {
           <div class="card">
             <div class="container">
               <h2>Marco Paparatto</h2>
-              <p class="title">Developer</p>
+              <p class="team_member_title">Developer</p>
               <p>mp752@njit.edu</p>
               <p><button class="button"><a href="mailto:mp752@njit.edu">Contact</a></button></p>
             </div>

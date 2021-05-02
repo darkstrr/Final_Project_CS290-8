@@ -281,7 +281,7 @@ button svg {
 
 .column {
   float: left;
-  width: 24.1%;
+  width: 23.8%;
   margin-bottom: 16px;
   padding: 9px;
 }
@@ -309,7 +309,14 @@ button svg {
   display: table;
 }
 
-.title {
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.team_member_title {
   color: black;
 }
 
@@ -330,4 +337,15 @@ button svg {
 
 a:visited {
   color: white;
+}
+
+.about_us_header {
+  color: cyan;
+  text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+}
+
+.our_team_header {
+  text-align: center;
+  color: red;
+  text-shadow: 0 0 5px red, 0 0 10px red;
 }
