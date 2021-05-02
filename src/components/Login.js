@@ -119,8 +119,8 @@ function Login(props) {
             <div class="container">
               <h2>Shayed Ahmed</h2>
               <p class="title">Developer</p>
-              <p>jane@example.com</p>
-              <p><button class="button">Contact</button></p>
+              <p>sa2255@njit.edu</p>
+              <p><button class="button"><a href="mailto:sa2255@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
@@ -130,8 +130,8 @@ function Login(props) {
             <div class="container">
               <h2>Albert Wang</h2>
               <p class="title">Developer</p>
-              <p>mike@example.com</p>
-              <p><button class="button">Contact</button></p>
+              <p>axw2@njit.edu</p>
+              <p><button class="button"><a href="mailto:axw2@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
@@ -141,8 +141,8 @@ function Login(props) {
             <div class="container">
               <h2>Akshay Patel</h2>
               <p class="title">Developer</p>
-              <p>john@example.com</p>
-              <p><button class="button">Contact</button></p>
+              <p>ap223@njit.edu</p>
+              <p><button class="button"><a href="mailto:ap223@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
@@ -152,8 +152,8 @@ function Login(props) {
             <div class="container">
               <h2>Marco Paparatto</h2>
               <p class="title">Developer</p>
-              <p>john@example.com</p>
-              <p><button class="button">Contact</button></p>
+              <p>mp752@njit.edu</p>
+              <p><button class="button"><a href="mailto:mp752@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
