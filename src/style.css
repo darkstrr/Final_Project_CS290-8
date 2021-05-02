@@ -17,6 +17,13 @@ body {
 
 }
 
+.about_section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
 .footer {
   position: fixed;
   left: 0;
@@ -39,7 +46,6 @@ body {
   height: 25px;
   background-color: #2196F3;
   padding: 10px;
-  
 }
 
 
@@ -269,4 +275,77 @@ button svg {
 .start_game_button:hover {
   color: rgba(255, 255, 255, 1);
   box-shadow: 0 5px 15px #ff0000;
+}
+
+/* Contact us section css below */
+
+.column {
+  float: left;
+  width: 23.8%;
+  margin-bottom: 16px;
+  padding: 9px;
+}
+
+.card {
+  border: 1px solid red;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+
+  -webkit-box-shadow: 0px 0px 4px red;
+  -moz-box-shadow: 0px 0px 4px red;
+  box-shadow: 0px 0px 4px red;
+  margin: 8px;
+  background-color: brown;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.team_member_title {
+  color: black;
+}
+
+.button {
+  border: none;
+  display: inline-block;
+  padding: 1px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+a:visited {
+  color: white;
+}
+
+.about_us_header {
+  color: cyan;
+  text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+}
+
+.our_team_header {
+  text-align: center;
+  color: red;
+  text-shadow: 0 0 5px red, 0 0 10px red;
 }
