@@ -90,17 +90,28 @@ function Login(props) {
     <div>
       <div class="topnav">
         <div>
-          Music Guessing Game
           <img src={image}  height="40" width="40"/>
+          Music Guessing Game
         </div>
-        <div>Home</div>
-        <div>About Us</div>
         <div>Username: {name}</div>
-        <div>E-mail 📧:{email}</div>
+        <div>E-mail 📧: {email}</div>
         <img src={url} alt={name} height="40" width="40"/>
         {loginButton()}
       </div>
-      
+      <br/>
+      <br/>
+      <div className="about_section">
+        <h1>About Us</h1>
+        <h3>Welcome to the Music Guessing Game!</h3>
+        <p>
+          We aim to deliver a real-time music guessing game that can be accessed from anywhere as long as you have access to a web browser. Sign in with your Google Account to identify yourselves, and a place to input a room code to join in with friends. The game will consist of a music preview from a random artist/genre, and 4 choices of songs. By selecting one of the choices, the player will be able to earn points based on speed and accuracy. The player with the highest amount of points by the end of the game will be declared the winner!
+        </p>
+        <br/>
+        <p>
+          During the pandemic, many social interactions have been cut short, and one of the new ways to meet and hang out with friends is through games, specifically multiplayer games. With a music game through a browser, you can play with friends, and show off your music database by earning the most points.
+        </p>
+      </div>
+
       <br/>
       <br/>
       
