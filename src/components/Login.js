@@ -3,6 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import Game from "./Game";
 import Chat from "./Chat";
 import "../style.css";
+import image from '../images/image.png';
 
 //This load and configure dotenv
 require("dotenv").config();
@@ -87,13 +88,24 @@ function Login(props) {
 
   return (
     <div>
-      <h1>Login</h1>
-      <h2>Username: {name} </h2>
-      <h2>Email 📧: {email}</h2>
-      <img src={url} alt={name} />
-      <br />
-      {loginButton()}
+      <div class="topnav">
+        <div>
+          Music Guessing Game
+          <img src={image}  height="40" width="40"/>
+        </div>
+        <div>Home</div>
+        <div>About Us</div>
+        <div>Username: {name}</div>
+        <div>E-mail 📧:{email}</div>
+        <img src={url} alt={name} height="40" width="40"/>
+        {loginButton()}
+      </div>
+      
+      <br/>
+      <br/>
+      
       <div class="Game">{isLoggedIn()}</div>
+
     </div>
   );
 }

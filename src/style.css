@@ -3,6 +3,20 @@
   position: center;
 }
 
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  background: url("images/background.jpg");
+  color: white;
+
+}
+
 .footer {
   position: fixed;
   left: 0;
@@ -14,6 +28,21 @@
   text-align: center;
 }
 
+.topnav {
+  position: fixed;
+  float: left;
+  top: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  align-content: center;
+  height: 25px;
+  background-color: #2196F3;
+  padding: 10px;
+  
+}
+
+
 .button {
   align-self: center;
   cursor: pointer;
@@ -21,7 +50,7 @@
   font-size: 1.3em;
   box-sizing: content-box;
   margin: 20px auto 0px;
-  width: 1%;
+  width: 0.5%;
   padding: 15px 20px;
   border-radius: 24px;
   border-color: transparent;
@@ -46,10 +75,9 @@
 }
 
 .quiz {
-  background-color: white;
   position: center;
   text-align: center;
-  width: 50%;
+  width: 53%;
   min-height: 200px;
   height: min-content;
   border-radius: 15px;
@@ -59,6 +87,8 @@
   margin-left: auto;
   margin-right: auto;
   justify-content: space-evenly;
+  color: black;
+  background-color: white;
 }
 
 .start {
@@ -72,8 +102,10 @@
 
 .score-section {
   display: flex;
-  font-size: 24px;
+  font-size: 45px;
   align-items: center;
+  font-family: "Brush Script MT", cursive;
+  color: purple;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -96,7 +128,6 @@
 
 .timer {
   background: lightblue;
-  padding: 15px;
   height: 70%;
   width: 20%;
   margin-top: 20px;
@@ -149,15 +180,93 @@ button svg {
   margin-right: 5px;
 }
 .Chat {
-  background-color:white;
-  color: black;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 23px;
-  right: 28px;
-  width: 280px;
+  position: absolute;
+  float: right;
+  top: 1;
+  right: 0;
   
+  border: 1px #bfff00; /* some kind of blue border */
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+
+  -webkit-box-shadow: 0px 0px 4px #bfff00;
+  -moz-box-shadow: 0px 0px 4px #bfff00;
+  box-shadow: 0px 0px 4px #bfff00; /* some variation of blue for the shadow */
+  padding: 15px;
+  font-family: "Brush Script MT", cursive;
+  color: white;
+  
+}
+
+.Chat.sticky {
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 10;
+  background-color: green;
+  border: 2px solid #4CAF50;
+}
+
+.chat_history {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: pre-wrap;
+    height: 200px;
+    width: 200px;
+    overflow: auto;
+    border: 3px solid #bfff00;
+    padding: 2%;
+    text-align: center;
+    background: white;
+    color: black;
+    font-size: 1.5em;
+}
+
+.chat_title {
+  color: #bfff00;
+  text-shadow: 0 0 5px #bfff00, 0 0 10px #bfff00;
+}
+
+.send_chat_button {
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  background: #bfff00;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+  
+  -webkit-box-shadow: 0px 0px 4px #bfff00;
+  -moz-box-shadow: 0px 0px 4px #bfff00;
+  box-shadow: 0px 0px 4px #bfff00;
+}
+
+.send_chat_button:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px #bfff00;
+}
+
+.start_game_button {
+  text-decoration: none;
+  color: black;
+  background: #ff0000;
+  padding: 15px 40px;
+  font-weight: normal;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+
+  border: 1px solid #ff0000;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+
+  -webkit-box-shadow: 0px 0px 4px #ff0000;
+  -moz-box-shadow: 0px 0px 4px #ff0000;
+  box-shadow: 0px 0px 4px #ff0000;
+  font-family: "Brush Script MT", cursive;
+}
+
+.start_game_button:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px #ff0000;
 }
