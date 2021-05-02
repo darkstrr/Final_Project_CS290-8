@@ -111,6 +111,56 @@ function Login(props) {
           During the pandemic, many social interactions have been cut short, and one of the new ways to meet and hang out with friends is through games, specifically multiplayer games. With a music game through a browser, you can play with friends, and show off your music database by earning the most points.
         </p>
       </div>
+      
+      <h2>Our Team</h2>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <div class="container">
+              <h2>Shayed Ahmed</h2>
+              <p class="title">Developer</p>
+              <p>jane@example.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <div class="container">
+              <h2>Albert Wang</h2>
+              <p class="title">Developer</p>
+              <p>mike@example.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <div class="container">
+              <h2>Akshay Patel</h2>
+              <p class="title">Developer</p>
+              <p>john@example.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="card">
+            <div class="container">
+              <h2>Marco Paparatto</h2>
+              <p class="title">Developer</p>
+              <p>john@example.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
 
       <br/>
       <br/>
