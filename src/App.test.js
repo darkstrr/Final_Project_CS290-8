@@ -42,3 +42,15 @@ test("The about us section is viewable before logging in.", () => {
   const about_us = screen.getByTestId("about_us_test"); // gets about us section
   expect(about_us).toBeInTheDocument(); // checks if about us section is visible
 });
+
+test("The contact us section is viewable before logging in.", () => {
+  render(<App />);
+
+  const googleLoginButton = screen.getByText("Google Login"); // Get google login button by text
+  expect(googleLoginButton).toBeInTheDocument(); // check if login button is on page
+
+  const contact_us = screen.getByTestId("contact_us_test"); // gets contact us section
+  expect(contact_us).toBeInTheDocument(); // checks if contact us section is visible
+  
+ 
+});
