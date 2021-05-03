@@ -4,8 +4,8 @@ Flask server is working in the backend and communicate with server-client using 
 # pylint: disable=invalid-name
 import os
 import random
-from flask import Flask, send_from_directory, json
-from flask_socketio import SocketIO
+from flask import Flask, send_from_directory, json, request
+from flask_socketio import SocketIO, join_room, leave_room
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from music_fetch import MusicFetch
@@ -13,6 +13,8 @@ from music_fetch import MusicFetch
 from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())  # This is to load your API keys from .env
+
+connected_users = {}
 
 roomScore = {
       "players": {
@@ -59,27 +61,40 @@ def on_disconnect():
 @socketio.on('start')
 def on_start():
     """function starts when the start game button is pressed"""
+    uid = request.sid
+    room = connected_users[uid]
     tracks = MusicFetch()
-    socketio.emit('tracks', tracks, broadcast=True)
+    socketio.emit('tracks', tracks, broadcast=True, to=room)
 
 
 @socketio.on('timeup')
 def on_time(data):
     """Function for when the quesiton time runs out"""
-    socketio.emit('time', data, broadcast=True)
-    print("Time up")
+    uid = request.sid
+    room = connected_users[uid]
+    socketio.emit('time', data, broadcast=True, to=room)
 
 
 @socketio.on('nextquestion')
 def next_question():
     """When the next quesiton appears"""
-    socketio.emit('nextquestion')
+    uid = request.sid
+    room = connected_users[uid]
+    socketio.emit('nextquestion', broadcast=True, to=room)
 
 
 @socketio.on('gameend')
 def game_end():
     """When the game ends"""
-    socketio.emit('gameend')
+    uid = request.sid
+    room = connected_users[uid]
+    socketio.emit('gameend', to=room)
+
+@socketio.on('join')
+def on_join(data):
+    """When user joins a room"""
+    connected_users[request.sid] = data['roomName']
+    join_room(data['roomName'])
 
 
 @socketio.on('login')

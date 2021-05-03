@@ -12,7 +12,8 @@ function Game(props) {
   const [gameState, setGameState] = useState(false);
   const [name, setName] = useState(props.username);
   const [leaderboard, setLeaderboard] = useState([]);
-  //const [tracks, setTracks] = useState([]);
+  const [room, setRoom] = useState('');
+  const [inRoom, setInRoom] = useState(false)
   const [questions, setQuestions] = useState([]);
 
   function RestartGame(condition = true) {
@@ -118,20 +119,39 @@ function Game(props) {
         </div>
       );
   }
+  
+  function RoomJoin(){
+    setInRoom(true);
+    socket.emit('join',{roomName: room});
+  }
 
   return (
     <div className="Game">
       <br />
       <div className="start">
-      {gameState ? (
-        <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
-          Restart Game
-        </button>
+       {inRoom ? (
+        gameState ?  (
+          <div>
+            <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
+              Restart Game
+            </button>
+            You are in room: {room}
+          </div>
+        ):(
+          <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
+            Start Game
+          </button>
+          )
       ):(
-        <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
-          Start Game
-        </button>
-        )}
+        <div>
+          <input type="text" placeholder="Room Name" value={room} onChange={e => setRoom(e.target.value)}/>
+          <button type="button" onClick={() => RoomJoin(true)}>
+            Join
+          </button>
+        </div>
+        
+      )
+       }
       </div>
       <br />
       {Display()}
