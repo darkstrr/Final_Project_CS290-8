@@ -88,7 +88,7 @@ function Login(props) {
 
   return (
     <div>
-      <div class="topnav">
+      <div className="topnav">
         <div>
           <img src={image}  height="40" width="40"/>
           Music Guessing Game
@@ -100,7 +100,7 @@ function Login(props) {
       </div>
       <br/>
       <br/>
-      <div className="about_section">
+      <div className="about_section" data-testid="about_us_test">
         <h1 className="about_us_header">About Us</h1>
         <h3>Welcome to the Music Guessing Game!</h3>
         <p>
@@ -112,48 +112,48 @@ function Login(props) {
         </p>
       </div>
       
-      <h1 className="our_team_header">Our Team</h1>
-      <div class="row">
-        <div class="column">
-          <div class="card">
-            <div class="container">
+      <h1 className="our_team_header" data-testid="contact_us_test">Our Team</h1>
+      <div className="row" data-testid="row_of_contacts_test">
+        <div className="column">
+          <div className="card">
+            <div className="container">
               <h2>Shayed Ahmed</h2>
-              <p class="team_member_title">Developer</p>
+              <p className="team_member_title">Developer</p>
               <p>sa2255@njit.edu</p>
-              <p><button class="button"><a href="mailto:sa2255@njit.edu">Contact</a></button></p>
+              <p><button className="button"><a href="mailto:sa2255@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
       
-        <div class="column">
-          <div class="card">
-            <div class="container">
+        <div className="column">
+          <div className="card">
+            <div className="container">
               <h2>Albert Wang</h2>
-              <p class="team_member_title">Developer</p>
+              <p className="team_member_title">Developer</p>
               <p>axw2@njit.edu</p>
-              <p><button class="button"><a href="mailto:axw2@njit.edu">Contact</a></button></p>
+              <p><button className="button"><a href="mailto:axw2@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
       
-        <div class="column">
-          <div class="card">
-            <div class="container">
+        <div className="column">
+          <div className="card">
+            <div className="container">
               <h2>Akshay Patel</h2>
-              <p class="team_member_title">Developer</p>
+              <p className="team_member_title">Developer</p>
               <p>ap223@njit.edu</p>
-              <p><button class="button"><a href="mailto:ap223@njit.edu">Contact</a></button></p>
+              <p><button className="button"><a href="mailto:ap223@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
         
-        <div class="column">
-          <div class="card">
-            <div class="container">
+        <div className="column">
+          <div className="card">
+            <div className="container">
               <h2>Marco Paparatto</h2>
-              <p class="team_member_title">Developer</p>
+              <p className="team_member_title">Developer</p>
               <p>mp752@njit.edu</p>
-              <p><button class="button"><a href="mailto:mp752@njit.edu">Contact</a></button></p>
+              <p><button className="button"><a href="mailto:mp752@njit.edu">Contact</a></button></p>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ function Login(props) {
       <br/>
       <br/>
       
-      <div class="Game">{isLoggedIn()}</div>
+      <div className="Game">{isLoggedIn()}</div>
 
     </div>
   );
