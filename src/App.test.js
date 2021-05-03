@@ -55,3 +55,26 @@ test("The contact us section is viewable before logging in.", () => {
   const row_of_contacts = screen.getByTestId("row_of_contacts_test"); // gets contact cards section
   expect(row_of_contacts).toBeInTheDocument(); // checks if contact cards section is visible
 });
+
+test("Nav bar is always on the top of the page with correct sections.", () => {
+  render(<App />);
+
+  const googleLoginButton = screen.getByText("Google Login"); // Get google login button by text
+  expect(googleLoginButton).toBeInTheDocument(); // check if login button is on page
+  
+  const gameTitle = screen.getByText("Music Guessing Game"); // Game title heade
+  const username = screen.getByText("Username:"); // Username heade
+  const email = screen.getByText("E-mail 📧:"); // Email header
+  expect(gameTitle).toBeInTheDocument(); // checks if game title is visible
+  expect(username).toBeInTheDocument(); // checks if username header visible
+  expect(email).toBeInTheDocument(); // checks if email header visible
+  
+  const startElement = screen.queryByText("Google Login:");
+  // checks if button does not exist after logging in
+  expect(startElement).not.toBeInTheDocument();
+  
+  // check if nav bar is still visible even after logging in
+  expect(gameTitle).toBeInTheDocument(); // checks if game title is visible
+  expect(username).toBeInTheDocument(); // checks if username header visible
+  expect(email).toBeInTheDocument(); // checks if email header visible
+});
