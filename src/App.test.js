@@ -52,5 +52,6 @@ test("The contact us section is viewable before logging in.", () => {
   const contact_us = screen.getByTestId("contact_us_test"); // gets contact us section
   expect(contact_us).toBeInTheDocument(); // checks if contact us section is visible
   
- 
+  const row_of_contacts = screen.getByTestId("row_of_contacts_test"); // gets contact cards section
+  expect(row_of_contacts).toBeInTheDocument(); // checks if contact cards section is visible
 });
