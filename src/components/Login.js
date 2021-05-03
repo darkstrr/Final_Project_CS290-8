@@ -95,7 +95,7 @@ function Login(props) {
         </div>
         <div>Username: {name}</div>
         <div>E-mail 📧: {email}</div>
-        <img src={url} alt={name} height="40" width="40"/>
+        <img src={url} alt={name} height="40" width="40" data-testid="google_pic"/>
         {loginButton()}
       </div>
       <br/>

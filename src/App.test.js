@@ -65,9 +65,11 @@ test("Nav bar is always on the top of the page with correct sections.", () => {
   const gameTitle = screen.getByText("Music Guessing Game"); // Game title heade
   const username = screen.getByText("Username:"); // Username heade
   const email = screen.getByText("E-mail 📧:"); // Email header
+  const picture = screen.getByTestId("google_pic"); // gets google picture
   expect(gameTitle).toBeInTheDocument(); // checks if game title is visible
   expect(username).toBeInTheDocument(); // checks if username header visible
   expect(email).toBeInTheDocument(); // checks if email header visible
+  expect(picture).toBeInTheDocument(); // checks if google picture visible
   
   const startElement = screen.queryByText("Google Login:");
   // checks if button does not exist after logging in
@@ -77,4 +79,5 @@ test("Nav bar is always on the top of the page with correct sections.", () => {
   expect(gameTitle).toBeInTheDocument(); // checks if game title is visible
   expect(username).toBeInTheDocument(); // checks if username header visible
   expect(email).toBeInTheDocument(); // checks if email header visible
+  expect(picture).toBeInTheDocument(); // checks if google picture visible
 });
