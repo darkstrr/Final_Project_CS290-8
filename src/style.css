@@ -17,11 +17,28 @@ body {
 
 }
 
+.music_logo {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #4195fc; /* some kind of blue border */
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+
+  -webkit-box-shadow: 0px 0px 4px #4195fc;
+     -moz-box-shadow: 0px 0px 4px #4195fc;
+          box-shadow: 0px 0px 4px #4195fc; /* some variation of blue for the shadow */
+}
+
 .about_section {
   padding: 50px;
   text-align: center;
   background-color: #474e5d;
   color: white;
+}
+
+.welcome_guess_game {
+  text-align: center;
 }
 
 .footer {
@@ -354,4 +371,12 @@ a:visited {
   text-align: center;
   color: red;
   text-shadow: 0 0 5px red, 0 0 10px red;
+}
+
+.game_name {
+  font-family: "Brush Script MT", cursive;
+  font-size: 2em;
+  text-align: center;
+  color: yellow;
+  text-shadow: 0 0 5px yellow, 0 0 10px yellow;
 }
