@@ -32,3 +32,13 @@ test("Login button dissapears after user is done logging in", () => {
   // checks if button does not exist after logging in
   expect(startElement).not.toBeInTheDocument();
 });
+
+test("The about us section is viewable before logging in.", () => {
+  render(<App />);
+
+  const googleLoginButton = screen.getByText("Google Login"); // Get google login button by text
+  expect(googleLoginButton).toBeInTheDocument(); // check if login button is on page
+
+  const about_us = screen.getByTestId("about_us_test"); // gets about us section
+  expect(about_us).toBeInTheDocument(); // checks if about us section is visible
+});
