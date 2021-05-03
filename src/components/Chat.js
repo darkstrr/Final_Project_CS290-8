@@ -46,7 +46,6 @@ export default function Chat()
                 <div>
                     <button className = "send_chat_button" onClick={onClickButton}>Send</button>
                 </div>
-                <br/>
                 <div className="chat_history">
                 <ul>
                     {messages.map((item, index) => <Text key={index} msg={item} />)}

@@ -116,6 +116,9 @@ function Login(props) {
         <p>
           During the pandemic, many social interactions have been cut short, and one of the new ways to meet and hang out with friends is through games, specifically multiplayer games. With a music game through a browser, you can play with friends, and show off your music database by earning the most points.
         </p>
+        <p>
+          Login to play the Game. Click on Google Login 👆 .
+        </p>
       </div>
       
       <h1 className="our_team_header" data-testid="contact_us_test">Our Team</h1>
