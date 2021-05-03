@@ -98,8 +98,6 @@ function Login(props) {
         <img src={url} alt={name} height="40" width="40" data-testid="google_pic"/>
         {loginButton()}
       </div>
-      <br/>
-      <br/>
       <div className="about_section" data-testid="about_us_test">
         <h1 className="about_us_header">About Us</h1>
         <h3>Welcome to the Music Guessing Game!</h3>
@@ -158,8 +156,6 @@ function Login(props) {
           </div>
         </div>
       </div>
-      
-      
       
 
       <br/>

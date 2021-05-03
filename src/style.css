@@ -335,16 +335,22 @@ button svg {
   background-color: #555;
 }
 
+a:link {
+  color: red;
+}
+
 a:visited {
-  color: white;
+  color: red;
 }
 
 .about_us_header {
+  font-family: "Brush Script MT", cursive;
   color: cyan;
   text-shadow: 0 0 5px cyan, 0 0 10px cyan;
 }
 
 .our_team_header {
+  font-family: "Brush Script MT", cursive;
   text-align: center;
   color: red;
   text-shadow: 0 0 5px red, 0 0 10px red;
