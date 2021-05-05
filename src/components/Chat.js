@@ -21,6 +21,7 @@ export default function Chat() {
       setMessages((prevMessages) => [...prevMessages, message]);
       socket.emit("chat", { message: message });
     }
+  }
 
     
     useEffect(() => {
@@ -53,3 +54,4 @@ export default function Chat() {
         </div>
   );
 }
+
