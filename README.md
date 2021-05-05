@@ -1,3 +1,7 @@
+## Heroku app link:
+
+       https://music-guesserv2.herokuapp.com/
+
 ## FINAL GROUP PROJECT_CS490
 
     Group 8
@@ -37,6 +41,3 @@
     Preview web page in browser '/'
 
 
-## Heroku app link:
-
-       https://music-guesserv2.herokuapp.com/
