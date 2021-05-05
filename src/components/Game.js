@@ -1,7 +1,7 @@
-import { useState,  useEffect } from "react";
-import ReactAudioPlayer from 'react-audio-player';
-import Timer from './Timer.js';
-import Leaderboard from './Leaderboard.js';
+import { useState, useEffect } from "react";
+import ReactAudioPlayer from "react-audio-player";
+import Timer from "./Timer.js";
+import Leaderboard from "./Leaderboard.js";
 
 function Game(props) {
   const { socket, username } = props;
@@ -12,9 +12,10 @@ function Game(props) {
   const [gameState, setGameState] = useState(false);
   const [name, setName] = useState(props.username);
   const [leaderboard, setLeaderboard] = useState([]);
-  const [room, setRoom] = useState('');
-  const [inRoom, setInRoom] = useState(false)
+  const [room, setRoom] = useState("");
+  const [inRoom, setInRoom] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [inProgress, setInProgress] = useState(false);
 
   function RestartGame(condition = true) {
     socket.emit("start");
@@ -27,10 +28,22 @@ function Game(props) {
       setQuestions(data);
       setGameState(true);
       setShowScore(false);
+      setCurrentQuestion(0);
     });
 
     socket.on("time", (data) => {
       TimeOut(data);
+    });
+    socket.on("nextquestion", (data) => {
+      setCurrentQuestion(data);
+    });
+    socket.on("gameend", (data) => {
+      setShowScore(true);
+    });
+    socket.on("inprogress", (data) => {
+      setInProgress(true);
+      setInRoom(false);
+      setRoom("");
     });
     socket.on("Leaderboard", (topTen) => {
       setLeaderboard(topTen);
@@ -59,10 +72,10 @@ function Game(props) {
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
       document.getElementById("sample").load();
-      socket.emit("nextquestion");
+      socket.emit("nextquestion", nextQuestion);
     } else {
       setShowScore(true);
-      socket.emit("Leaderboard",{"name": name, "score": score});
+      socket.emit("Leaderboard", { name: name, score: score });
       socket.emit("gameend");
     }
   };
@@ -119,39 +132,56 @@ function Game(props) {
         </div>
       );
   }
-  
-  function RoomJoin(){
+
+  function RoomJoin() {
     setInRoom(true);
-    socket.emit('join',{roomName: room});
+    setInProgress(false);
+    socket.emit("join", { roomName: room });
   }
 
   return (
     <div className="Game">
       <br />
+      {inProgress ? <p>Game is already in progress!</p> : <div />}
       <div className="start">
-       {inRoom ? (
-        gameState ?  (
-          <div>
-            <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
-              Restart Game
+        {inRoom ? <p> You are in room: {room}</p> : <br />}
+        {inRoom ? (
+          gameState ? (
+            showScore ? (
+              <div>
+                <button
+                  className="start_game_button"
+                  type="button"
+                  onClick={() => RestartGame(true)}
+                >
+                  Restart Game
+                </button>
+              </div>
+            ) : (
+              <br />
+            )
+          ) : (
+            <button
+              className="start_game_button"
+              type="button"
+              onClick={() => RestartGame(true)}
+            >
+              Start Game
             </button>
-            You are in room: {room}
-          </div>
-        ):(
-          <button className = "start_game_button" type="button" onClick={() => RestartGame(true)}>
-            Start Game
-          </button>
           )
-      ):(
-        <div>
-          <input type="text" placeholder="Room Name" value={room} onChange={e => setRoom(e.target.value)}/>
-          <button type="button" onClick={() => RoomJoin(true)}>
-            Join
-          </button>
-        </div>
-        
-      )
-       }
+        ) : (
+          <div>
+            <input
+              type="text"
+              placeholder="Room Name"
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+            />
+            <button type="button" onClick={() => RoomJoin(true)}>
+              Join
+            </button>
+          </div>
+        )}
       </div>
       <br />
       {Display()}

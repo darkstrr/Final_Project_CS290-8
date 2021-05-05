@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 export default function Timer(props) {
   const { socket } = props;
   const { question } = props;
-  const [timer, setTimer] = useState(45)
+  const [timer, setTimer] = useState(45);
   const [showTime, setShowTime] = useState(true);
   const id = useRef(null);
   const clear = () => {

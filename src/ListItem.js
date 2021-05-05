@@ -5,9 +5,6 @@ export function ListItem(props) {
 }
 
 //Chat message
-export function Text(props){
-    
-    return <li>{ props.msg } </li>
-                
-    
+export function Text(props) {
+  return <li>{props.msg} </li>;
 }

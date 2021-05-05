@@ -1,13 +1,10 @@
-import { React, useState } from 'react';
-import PropTypes from 'prop-types';
-import './Leaderboard.css';
+import { React, useState } from "react";
+import PropTypes from "prop-types";
+import "./Leaderboard.css";
 
 function Leaderboard(props) {
   const [showTopTen, setShowTopTen] = useState(false);
-  const {
-    topTen,
-    username,
-  } = props;
+  const { topTen, username } = props;
 
   function onToggleTopTen() {
     setShowTopTen((prevIsShown) => !prevIsShown);
@@ -15,9 +12,11 @@ function Leaderboard(props) {
 
   return (
     <div>
-     {showTopTen === true ? (
+      {showTopTen === true ? (
         <div>
-          <button type="button" onClick={onToggleTopTen}>Hide Leaderboard</button>
+          <button type="button" onClick={onToggleTopTen}>
+            Hide Leaderboard
+          </button>
           <table>
             <thead>
               <tr>
@@ -28,14 +27,10 @@ function Leaderboard(props) {
             <tbody>
               {topTen.map((player, index) => (
                 <tr key={index}>
-                  <td
-                    className={username === player.username ? 'you' : ''}
-                  >
+                  <td className={username === player.username ? "you" : ""}>
                     {`${index + 1}. ${player.username}`}
                   </td>
-                  <td
-                    className={username === player.username ? 'you' : ''}
-                  >
+                  <td className={username === player.username ? "you" : ""}>
                     {player.points}
                   </td>
                 </tr>
@@ -45,7 +40,9 @@ function Leaderboard(props) {
         </div>
       ) : (
         <div>
-          <button type="button" onClick={onToggleTopTen}>Show Leaderboard</button>
+          <button type="button" onClick={onToggleTopTen}>
+            Show Leaderboard
+          </button>
         </div>
       )}
     </div>
@@ -53,10 +50,12 @@ function Leaderboard(props) {
 }
 
 Leaderboard.propTypes = {
-  topTen: PropTypes.arrayOf(PropTypes.shape({
-    username: PropTypes.string,
-    points: PropTypes.number,
-  })).isRequired,
+  topTen: PropTypes.arrayOf(
+    PropTypes.shape({
+      username: PropTypes.string,
+      points: PropTypes.number,
+    })
+  ).isRequired,
   username: PropTypes.string.isRequired,
 };
 
