@@ -57,6 +57,17 @@ def on_connect():
 def on_disconnect():
     """function print message into console when disconnected is ON"""
     print('User disconnected!')
+    try: 
+        uid = request.sid #Get the client ID
+        room = connected_users[uid] #Find the client's room
+        connected_users.pop(uid, None) #Remove them from the userlist
+        rooms[room]["players"] -= 1
+        if rooms[room]["players"] == 0:
+            rooms[room]["gameState"] = False
+            
+    except (KeyError, IndexError):
+        pass
+    
 
 
 @socketio.on('start')
@@ -64,7 +75,7 @@ def on_start():
     """function starts when the start game button is pressed"""
     uid = request.sid
     room = connected_users[uid]
-    rooms[room] = True
+    rooms[room]["gameState"] = True
     tracks = MusicFetch()
     socketio.emit('tracks', tracks, broadcast=True, to=room)
 
@@ -96,13 +107,15 @@ def game_end():
 @socketio.on('join')
 def on_join(data):
     """When user joins a room"""
-    if data['roomName'] not in rooms.keys():
-        rooms['roomName'] = False
-        connected_users[request.sid] = data['roomName']
-        join_room(data['roomName'])
-    elif data['roomName'] == False:
-        connected_users[request.sid] = data['roomName']
-        join_room(data['roomName'])
+    room_name = data['roomName']
+    if room_name not in rooms.keys():
+        rooms[room_name] = {"gameState": False, "players": 1}
+        connected_users[request.sid] = room_name
+        join_room(room_name)
+    elif rooms[room_name]["gameState"] == False :
+        connected_users[request.sid] = room_name
+        rooms[room_name]["players"] += 1
+        join_room(room_name)
     else:
         socketio.emit('inprogress', to=request.sid)
 
