@@ -1,30 +1,27 @@
 import { useState, useEffect, useRef } from "react";
-import io from 'socket.io-client';
-import { Text } from '../ListItem.js';
+import io from "socket.io-client";
+import { Text } from "../ListItem.js";
 import "../style.css";
-
 
 const socket = io(); // Connects to socket connection
 
-export default function Chat()
-{
-    //Chat messages
-    const [messages, setMessages] = useState([]); // State variable, list of messages
-    const inputRef = useRef(null); // Reference to <input> element
-    
-    function onClickButton() {
-       
-        if (inputRef != null) {
-          const message = inputRef.current.value;
-          // If your own client sends a message, we add it to the list of messages to 
-          // render it on the UI.
-          if (message.length == 0) {
-              return;
-          }
-          setMessages(prevMessages => [...prevMessages, message]);
-          socket.emit('chat', { message: message });
-        }
+export default function Chat() {
+  //Chat messages
+  const [messages, setMessages] = useState([]); // State variable, list of messages
+  const inputRef = useRef(null); // Reference to <input> element
+
+  function onClickButton() {
+    if (inputRef != null) {
+      const message = inputRef.current.value;
+      // If your own client sends a message, we add it to the list of messages to
+      // render it on the UI.
+      if (message.length == 0) {
+        return;
+      }
+      setMessages((prevMessages) => [...prevMessages, message]);
+      socket.emit("chat", { message: message });
     }
+
     
     useEffect(() => {
         socket.on('chat', (data) => {
@@ -54,5 +51,7 @@ export default function Chat()
             </div>  
             
         </div>
-        );
+      </div>
+    </div>
+  );
 }

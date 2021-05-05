@@ -5,11 +5,13 @@ import Chat from "./Chat";
 import "../style.css";
 import image from '../images/image.jpg';
 
+
 //This load and configure dotenv
 require("dotenv").config();
 
 //google cilent Id
-const clientId = "808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com";
+const clientId =
+  "808887656812-1tfa2ft0pom3hfttk2ol05ua8naklelk.apps.googleusercontent.com";
 //const clientId = process.env.Google_ClientID;
 
 function Login(props) {
@@ -68,7 +70,7 @@ function Login(props) {
       socket.emit("login", name);
       return (
         <div>
-          <Game socket={socket} username={name}/>
+          <Game socket={socket} username={name} />
           <Chat />
         </div>
       );
@@ -112,9 +114,13 @@ function Login(props) {
         <p>
           We aim to deliver a real-time music guessing game that can be accessed from anywhere as long as you have access to a web browser. Sign in with your Google Account to identify yourselves, and then input your room code to join in with friends. The game will consist of a music preview from a random artist/genre, and 4 choices of songs. By selecting one of the choices, the player will be able to earn points based on accuracy. The player with the highest amount of points by the end of the game will be declared the winner!
         </p>
-        <br/>
+        <br />
         <p>
-          During the pandemic, many social interactions have been cut short, and one of the new ways to meet and hang out with friends is through games, specifically multiplayer games. With a music game through a browser, you can play with friends, and show off your music database by earning the most points.
+          During the pandemic, many social interactions have been cut short, and
+          one of the new ways to meet and hang out with friends is through
+          games, specifically multiplayer games. With a music game through a
+          browser, you can play with friends, and show off your music database
+          by earning the most points.
         </p>
         <p>
           Login to play the Game. Click on Google Login 👆 .
@@ -168,17 +174,15 @@ function Login(props) {
         </div>
       </div>
 
-    </div>)
-      
-      :
-      
+
+    </div>)     
+      :    
       (<div>
       <br/>
       <br/>
       
       <div className="Game">{isLoggedIn()}</div>
       </div>)}
-    
     </div>
   );
 }

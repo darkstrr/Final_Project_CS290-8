@@ -4,8 +4,8 @@ Flask server is working in the backend and communicate with server-client using 
 # pylint: disable=invalid-name
 import os
 import random
-from flask import Flask, send_from_directory, json
-from flask_socketio import SocketIO
+from flask import Flask, send_from_directory, json, request
+from flask_socketio import SocketIO, join_room, leave_room
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from music_fetch import MusicFetch
@@ -14,9 +14,12 @@ from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())  # This is to load your API keys from .env
 
+connected_users = {}
+
+rooms = {}
+
 roomScore = {
-      "players": {
-    },
+    "players": {},
 }
 #Flask app name
 app = Flask(__name__, static_folder='./build/static')
@@ -59,27 +62,49 @@ def on_disconnect():
 @socketio.on('start')
 def on_start():
     """function starts when the start game button is pressed"""
+    uid = request.sid
+    room = connected_users[uid]
+    rooms[room] = True
     tracks = MusicFetch()
-    socketio.emit('tracks', tracks, broadcast=True)
+    socketio.emit('tracks', tracks, broadcast=True, to=room)
 
 
 @socketio.on('timeup')
 def on_time(data):
     """Function for when the quesiton time runs out"""
-    socketio.emit('time', data, broadcast=True)
-    print("Time up")
+    uid = request.sid
+    room = connected_users[uid]
+    socketio.emit('time', data, broadcast=True, to=room)
 
 
 @socketio.on('nextquestion')
-def next_question():
+def next_question(data):
     """When the next quesiton appears"""
-    socketio.emit('nextquestion')
+    uid = request.sid
+    room = connected_users[uid]
+    socketio.emit('nextquestion', data, broadcast=True, to=room)
 
 
 @socketio.on('gameend')
 def game_end():
     """When the game ends"""
-    socketio.emit('gameend')
+    uid = request.sid
+    room = connected_users[uid]
+    socketio.emit('gameend', to=room)
+
+
+@socketio.on('join')
+def on_join(data):
+    """When user joins a room"""
+    if data['roomName'] not in rooms.keys():
+        rooms['roomName'] = False
+        connected_users[request.sid] = data['roomName']
+        join_room(data['roomName'])
+    elif data['roomName'] == False:
+        connected_users[request.sid] = data['roomName']
+        join_room(data['roomName'])
+    else:
+        socketio.emit('inprogress', to=request.sid)
 
 
 @socketio.on('login')
@@ -104,8 +129,9 @@ def addUser(user, room):
     }
     roomScore['players'].update(newPlayer)
     return True
+
+
 @socketio.on('Leaderboard')
-    
 def update_leaderboard(data):
     print(type(data))
     print(str(data))
@@ -115,7 +141,8 @@ def update_leaderboard(data):
     print(player['score'])
     players = get_players()
     socketio.emit('Leaderboard', players, broadcast=True, include_self=True)
-        
+
+
 def get_players():
     topPlayers = []
     for key in roomScore['players']:
@@ -127,7 +154,8 @@ def get_players():
         topPlayers.append(newPlayer)
     print(topPlayers)
     return topPlayers
-            
+
+
 # When a client emits the event 'chat' to the server, this function is run
 # 'chat' is a custom event name that we just decided
 @socketio.on('chat')
@@ -137,6 +165,7 @@ def on_chat(data):
     # This emits the 'chat' event from the server to all clients except for
     # the client that emmitted the event that triggered this function
     socketio.emit('chat', data, broadcast=True, include_self=False)
+
 
 # Note we need to add this line so we can import app in the python shell
 if __name__ == "__main__":
