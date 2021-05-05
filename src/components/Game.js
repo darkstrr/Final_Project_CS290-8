@@ -143,9 +143,12 @@ function Game(props) {
   return (
     <div className="Game">
       <br />
-      {inProgress ? <p>Game is already in progress!</p> : <div />}
+      
+      {inProgress ?
+       <div className="Room_font"> <p>Game is already in progress!!!</p> </div> : <div />}
+      
       <div className="start">
-        {inRoom ? <p> You are in room: {room}</p> : <br />}
+        {inRoom ? <p> You are in room:<b> {room} </b></p> : <br />}
         {inRoom ? (
           gameState ? (
             showScore ? (
@@ -174,15 +177,18 @@ function Game(props) {
           <div className="room_text_box">
             <input
               type="text"
-              placeholder="Room Name"
+              placeholder="Create/Enter Room Name..."
               value={room}
               onChange={(e) => setRoom(e.target.value)}
             />
-            <button type="button" onClick={() => RoomJoin(true)}>
+            
+            <button className = "Join" onClick={() => RoomJoin(true)}>
               Join
             </button>
+            
           </div>
         )}
+        
       </div>
       <br />
       {Display()}
