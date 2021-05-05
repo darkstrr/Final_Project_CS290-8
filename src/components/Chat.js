@@ -21,41 +21,35 @@ export default function Chat() {
       setMessages((prevMessages) => [...prevMessages, message]);
       socket.emit("chat", { message: message });
     }
-  }
 
-  useEffect(() => {
-    socket.on("chat", (data) => {
-      console.log("Chat event received!!!");
-      console.log(data);
-
-      // If the server sends a message (on behalf of another client), then we
-      // add it to the list of messages to render it on the UI.
-      setMessages((prevMessages) => [...prevMessages, data.message]);
-    });
-  }, []);
-
-  return (
-    <div>
-      <div className="Chat">
-        <h2 className="chat_title">Chat</h2>
-        <input
-          ref={inputRef}
-          placeholder="Type message..."
-          type="text"
-          onFocus="this.value=''"
-        />
-        <div>
-          <button className="send_chat_button" onClick={onClickButton}>
-            Send
-          </button>
-        </div>
-        <br />
-        <div className="chat_history">
-          <ul>
-            {messages.map((item, index) => (
-              <Text key={index} msg={item} />
-            ))}
-          </ul>
+    
+    useEffect(() => {
+        socket.on('chat', (data) => {
+          console.log('Chat event received!!!');
+          console.log(data);
+          
+          // If the server sends a message (on behalf of another client), then we
+          // add it to the list of messages to render it on the UI.
+          setMessages(prevMessages => [...prevMessages, data.message]);
+        });
+    }, []);
+    
+    return (
+        <div >
+            <div className="Chat">
+            
+                <h2 className="chat_title">Chat</h2>
+                <input ref={inputRef} placeholder="Type message..." type="text" onFocus="this.value=''"/>
+                <div>
+                    <button className = "send_chat_button" onClick={onClickButton}>Send</button>
+                </div>
+                <div className="chat_history">
+                <ul>
+                    {messages.map((item, index) => <Text key={index} msg={item} />)}
+                </ul>
+                </div>
+            </div>  
+            
         </div>
       </div>
     </div>
