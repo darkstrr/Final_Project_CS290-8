@@ -118,6 +118,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   justify-content: space-evenly;
+  font-size: 50px;
+  align-items: center;
+  font-family: "Brush Script MT", cursive;
+  color: orange;
 }
 
 .score-section {
@@ -376,7 +380,10 @@ a:visited {
   position: center;
   margin-left: auto;
   margin-right: auto;
+  height: auto;
+  width: auto;
   font-size: 1.5em;
+  display: flex;
 }
 
 .game_name {
@@ -385,4 +392,19 @@ a:visited {
   text-align: center;
   color: yellow;
   text-shadow: 0 0 5px yellow, 0 0 10px yellow;
+}
+.Join:hover{
+  
+  box-shadow: 0 5px 15px #bfff00;
+  background: #bfff00;
+  background-clip: padding-box;
+}
+
+.Room_font{
+  display: block;
+  position:center;
+  font-size: 50px;
+  align-items: center;
+  font-family: "Brush Script MT", cursive;
+  color: Red;
 }
