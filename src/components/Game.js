@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import Timer from "./Timer.js";
 import Leaderboard from "./Leaderboard.js";
+import "../style.css"
 
 function Game(props) {
   const { socket, username } = props;
@@ -170,7 +171,7 @@ function Game(props) {
             </button>
           )
         ) : (
-          <div>
+          <div className="room_text_box">
             <input
               type="text"
               placeholder="Room Name"
